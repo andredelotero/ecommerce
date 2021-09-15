@@ -201,7 +201,7 @@ header .info .titleCta .ctas .cta--secondary:hover ~ .arrow--cta {
           transform: translateX(0.4rem);
 }
 
-header .info .titleCta .ctas .cta--secondary:visited, header .info .titleCta .ctas .cta--secondary:active, header .info .titleCta .ctas .cta--secondary:hover {
+header .info .titleCta .ctas .cta--secondary a, header .info .titleCta .ctas .cta--secondary:visited, header .info .titleCta .ctas .cta--secondary:active, header .info .titleCta .ctas .cta--secondary:hover {
   color: #fff;
 }
 
