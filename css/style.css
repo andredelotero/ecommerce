@@ -127,7 +127,73 @@ header .info {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   width: 100%;
+  max-width: 85rem;
+  padding-bottom: 4rem;
+}
+
+header .info .contacto {
+  width: 100%;
+  max-width: 500px;
+}
+
+header .info .contacto .form {
+  background: #e6e6e6;
+  border-radius: 8px;
+  padding: 20px 30px;
+}
+
+header .info .contacto h2 {
+  margin: 10px 0;
+  padding-bottom: 10px;
+  color: #78788c;
+  border-bottom: 3px solid #78788c;
+}
+
+header .info .contacto input {
+  width: 100%;
+  padding: 10px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  background: none;
+  outline: none;
+  resize: none;
+  border: 0;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  border-bottom: 2px solid #bebed2;
+}
+
+header .info .contacto input:focus {
+  border-bottom: 2px solid #78788c;
+}
+
+header .info .contacto p:before {
+  content: attr(type);
+  display: block;
+  margin: 28px 0 0;
+  font-size: 14px;
+  color: #5a5a5a;
+}
+
+header .info .contacto button {
+  padding: 8px 12px;
+  margin: 2rem 0 0;
+  border: 2px solid #78788c;
+  background: 0;
+  color: #5a5a6e;
+  cursor: pointer;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+header .info .contacto button:hover {
+  background: #78788c;
+  color: #fff;
 }
 
 header .info .titleCta {
@@ -142,7 +208,8 @@ header .info .titleCta {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 100%;
+  min-width: 270px;
+  max-width: 680px;
   color: #fff;
   padding: 0 1rem;
 }
@@ -269,10 +336,17 @@ main .servicios .card {
   max-width: 380px;
   margin: 2rem;
   padding-top: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 main .servicios .card img {
-  width: 100%;
+  width: auto;
   height: 100px;
 }
 
