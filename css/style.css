@@ -60,6 +60,28 @@ nav .cart:hover ~ .cart__contenido {
   display: block;
 }
 
+nav .cart .cantidad {
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  top: -18px;
+  left: 10px;
+  background: #ff0000;
+  padding: 0.5rem;
+  height: 1.2rem;
+  width: 1.2rem;
+  font-size: 0.7rem;
+  border-radius: 50%;
+  color: #fff;
+}
+
 nav .cart img {
   width: 20px;
   height: auto;
@@ -183,10 +205,11 @@ nav .menu ul li {
   display: inline-block;
   padding: 1rem 2.5rem;
   list-style: none;
+  height: 64px;
 }
 
 nav .menu ul li:hover {
-  background: #0000ff;
+  background: #695ae0;
   color: #fff;
 }
 
@@ -666,8 +689,7 @@ footer {
     color: #fff;
   }
   nav .menu ul li:hover {
-    background: #0000ff;
-    color: #fff;
+    background: #695ae0;
   }
   main .soluciones .cuadros__soluciones {
     width: 30%;
