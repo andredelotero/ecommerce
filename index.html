@@ -15,7 +15,12 @@
 <body>
     <nav>
         <div class="logo">Servicios Informáticos</div>
-        <div class="cart"><img src="./img/shopping-cart-solid.jpg" alt=""></div>
+        <div class="cart">
+            <img src="./img/shopping-cart-solid.jpg" alt="">
+        </div>
+        <div class="cart__contenido">
+            carrito vacio
+        </div>
         <input type="checkbox" aria-hidden="true" tabindex='-1' >
         <div class="burguer">
             <div class="linea1"></div>    
@@ -45,14 +50,35 @@
     </header>
     <main>
         
-        <section class="soluciones" id="servicios">
+        <section class="soluciones" >
             <div class="intro">
                 <h3 class="main--title">Un solo lugar, todas las soluciones:</h3>
                 <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nam expedita fuga, dicta repudiandae officia.</p>
             </div>
+            <div class="cuadros__soluciones">
+                <img src="./img/disenio.png" alt="">
+                <div class="cuadro__soluciones__info">
+                    <h4>Diseño desde la primera idea</h4>
+                    <p>lalalalala</p>
+                </div>
+            </div>
+            <div class="cuadros__soluciones">
+                <img src="./img/programacion.png" alt="">
+                <div class="cuadro__soluciones__info">
+                    <h4>Programacion y codificacion</h4>
+                    <p>lalalalala</p>
+                </div>
+            </div>
+            <div class="cuadros__soluciones">
+                <img src="./img/hosting.png" alt="">
+                <div class="cuadro__soluciones__info">
+                    <h4>Cloud Hosting</h4>
+                    <p>lalalalala</p>
+                </div>
+            </div>
         </section>
 
-        <p class="main--title mt4 align--center">Lo que ofrecemos:</p>
+        <p class="main--title mt4 align--center" id="servicios">Lo que ofrecemos:</p>
         <section class="servicios" >
             <article class="card">
                 <img src="./img/wireframe.svg" alt="">

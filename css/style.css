@@ -49,10 +49,15 @@ nav .logo {
 }
 
 nav .cart {
+  position: relative;
   -webkit-box-ordinal-group: 3;
       -ms-flex-order: 2;
           order: 2;
   height: 20px;
+}
+
+nav .cart:hover ~ .cart__contenido {
+  display: block;
 }
 
 nav .cart img {
@@ -63,10 +68,25 @@ nav .cart img {
   background: #7463fa;
 }
 
-nav input {
+nav .cart__contenido {
+  position: absolute;
   -webkit-box-ordinal-group: 4;
       -ms-flex-order: 3;
           order: 3;
+  top: 65px;
+  width: 250px;
+  right: 1rem;
+  padding: 0.4rem;
+  font-size: 0.7rem;
+  background: #fafafa;
+  color: #444;
+  display: none;
+}
+
+nav input {
+  -webkit-box-ordinal-group: 5;
+      -ms-flex-order: 4;
+          order: 4;
   position: absolute;
   width: 55px;
   right: 2rem;
@@ -96,9 +116,9 @@ nav input:checked ~ .menu {
 }
 
 nav .burguer {
-  -webkit-box-ordinal-group: 5;
-      -ms-flex-order: 4;
-          order: 4;
+  -webkit-box-ordinal-group: 6;
+      -ms-flex-order: 5;
+          order: 5;
   margin-right: 2rem;
   position: relative;
   height: 25px;
@@ -135,9 +155,9 @@ nav .burguer .linea3 {
 }
 
 nav .menu {
-  -webkit-box-ordinal-group: 6;
-      -ms-flex-order: 5;
-          order: 5;
+  -webkit-box-ordinal-group: 7;
+      -ms-flex-order: 6;
+          order: 6;
   width: 100%;
   position: absolute;
   opacity: 0;
@@ -166,7 +186,7 @@ nav .menu ul li {
 }
 
 nav .menu ul li:hover {
-  background: #7463fa;
+  background: #0000ff;
   color: #fff;
 }
 
@@ -175,13 +195,12 @@ header {
   width: 100%;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#7463fa), to(#6425dc));
   background-image: linear-gradient(to bottom, #7463fa, #6425dc);
-  margin-bottom: 2rem;
   -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);
           clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);
 }
 
 header .info {
-  margin: 3rem 0;
+  margin: 2rem 0 2rem 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -198,7 +217,7 @@ header .info {
       flex-wrap: wrap;
   width: 100%;
   max-width: 85rem;
-  padding-bottom: 4rem;
+  padding-bottom: 2rem;
 }
 
 header .info .titleCta {
@@ -206,6 +225,7 @@ header .info .titleCta {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  width: 100%;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -291,7 +311,9 @@ header .info .titleCta .ctas .arrow--cta {
 
 header .info img {
   width: 100%;
-  max-width: 600px;
+  max-width: 550px;
+  margin-top: 3rem;
+  display: none;
 }
 
 main {
@@ -300,7 +322,7 @@ main {
 
 main .soluciones {
   width: 100%;
-  margin: 1.5rem 0 1rem 0;
+  margin: 0 0 1rem 0;
   padding: 2rem;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -325,6 +347,39 @@ main .soluciones .intro p {
   line-height: 1.8rem;
   color: #444;
   font-weight: 500;
+}
+
+main .soluciones .cuadros__soluciones {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  border: 1px solid #000;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 1rem;
+  width: 100%;
+  margin: 1rem 0;
+}
+
+main .soluciones .cuadros__soluciones img {
+  width: 30%;
+  max-width: 50px;
+  height: auto;
+}
+
+main .soluciones .cuadros__soluciones .cuadro__soluciones__info {
+  width: 70%;
+}
+
+main .soluciones .cuadros__soluciones p {
+  margin-left: 0.5rem;
+  color: #444;
 }
 
 main .mt4 {
@@ -540,13 +595,24 @@ footer {
 */
 @media only screen and (min-width: 55rem) {
   header .info {
-    margin: 0 auto;
+    margin: 2rem auto;
   }
   header .info .titleCta {
     max-width: 50%;
+    text-align: left;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+  }
+  header .info .titleCta h2 {
+    margin-left: 0;
+    width: 80%;
   }
   header .info img {
-    max-width: 50%;
+    width: 50%;
+    max-width: 450px;
+    margin: 2rem 1rem 0 0;
+    display: block;
   }
   nav .logo {
     -webkit-box-ordinal-group: 2;
@@ -559,10 +625,16 @@ footer {
             order: 5;
     margin-right: 2rem;
   }
+  nav .cart__contenido {
+    -webkit-box-ordinal-group: 7;
+        -ms-flex-order: 6;
+            order: 6;
+  }
   nav input {
     -webkit-box-ordinal-group: 3;
         -ms-flex-order: 2;
             order: 2;
+    display: none;
   }
   nav .burguer {
     display: none;
@@ -594,7 +666,11 @@ footer {
     color: #fff;
   }
   nav .menu ul li:hover {
-    background: #362e72;
+    background: #0000ff;
     color: #fff;
+  }
+  main .soluciones .cuadros__soluciones {
+    width: 30%;
+    min-height: 100px;
   }
 }
