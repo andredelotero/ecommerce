@@ -8,8 +8,13 @@ class servicio{
     }
 }
 
+let cantidadProductos=0;
 
-/*
-01 wireframe lalala 6500 wireframe.svg
-
-*/
+function agregarAlCarrito(){
+    const car = document.querySelector(".cantidad");
+    if (cantidadProductos<1){
+        car.classList.remove("noShow");
+    }
+    cantidadProductos++;
+    car.innerHTML = cantidadProductos;
+}

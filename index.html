@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
-    <script src="./js/main.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500;600;700;900&display=swap" rel="stylesheet">
@@ -17,7 +16,7 @@
         <div class="logo">Servicios Informáticos</div>
         <div class="cart">
             <img src="./img/shopping-cart-solid.jpg" alt="">
-            <span class="cantidad">15</span>
+            <span class="cantidad noShow"></span>
         </div>
         <div class="cart__contenido">
             carrito vacio
@@ -86,14 +85,14 @@
                     <p class="titulo">Wireframe</p>
                     <p class="descripcion">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Non consectetur assumenda culpa incidunt, tempore voluptate delectus.</p>
                     <p class="precio">$6.500</p>
-                    <p class="comprar">agregar al carrito</p>
+                    <p class="comprar" onclick="agregarAlCarrito()">agregar al carrito</p>
             </article>
             <article class="card">
                 <img src="./img/wireframe_to_html.svg" alt="">
                     <p class="titulo">Wireframe a Html</p>
                     <p class="descripcion">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Non consectetur assumenda culpa incidunt, tempore voluptate delectus.</p>
                     <p class="precio">$9.800</p>
-                    <p class="comprar">agregar al carrito</p>
+                    <p class="comprar" onclick="agregarAlCarrito()">agregar al carrito</p>
 
             </article>
 
@@ -102,7 +101,7 @@
                     <p class="titulo">Responsive Design</p>
                     <p class="descripcion">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Non consectetur assumenda culpa incidunt, tempore voluptate delectus.</p>
                     <p class="precio">$12.900</p>
-                    <p class="comprar">agregar al carrito</p>
+                    <p class="comprar" onclick="agregarAlCarrito()">agregar al carrito</p>
 
             </article>
 
@@ -111,7 +110,7 @@
                     <p class="titulo">Optimizacion del sitio</p>
                     <p class="descripcion">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Non consectetur assumenda culpa incidunt, tempore voluptate delectus.</p>
                     <p class="precio">$10.200</p>
-                    <p class="comprar">agregar al carrito</p>
+                    <p class="comprar" onclick="agregarAlCarrito()">agregar al carrito</p>
 
             </article>
 
@@ -120,7 +119,7 @@
                     <p class="titulo">Seguridad del Sitio</p>
                     <p class="descripcion">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Non consectetur assumenda culpa incidunt, tempore voluptate delectus.</p>
                     <p class="precio">$14.200</p>
-                    <p class="comprar">agregar al carrito</p>
+                    <p class="comprar" onclick="agregarAlCarrito()">agregar al carrito</p>
 
             </article>
 
@@ -129,7 +128,7 @@
                     <p class="titulo">Integracion del Staff</p>
                     <p class="descripcion">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Non consectetur assumenda culpa incidunt, tempore voluptate delectus.</p>
                     <p class="precio">$18.200</p>
-                    <p class="comprar">agregar al carrito</p>
+                    <p class="comprar" onclick="agregarAlCarrito()">agregar al carrito</p>
 
             </article>
         </section>
@@ -141,5 +140,6 @@
     <footer>
         2021 - Servicios Informáticos
     </footer>
+    <script src="./js/main.js"></script>
 </body>
 </html>
