@@ -16,5 +16,6 @@ function agregarAlCarrito(){
         car.classList.remove("noShow");
     }
     cantidadProductos++;
+    car.style.animation= "sacudon 150ms";
     car.innerHTML = cantidadProductos;
 }

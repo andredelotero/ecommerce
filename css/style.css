@@ -81,6 +81,8 @@ nav .cart .cantidad {
   font-size: 0.7rem;
   border-radius: 50%;
   color: #fff;
+  -webkit-transition: all 250ms linear;
+  transition: all 250ms linear;
 }
 
 nav .cart .noShow {
@@ -108,6 +110,36 @@ nav .cart__contenido {
   background: #fafafa;
   color: #444;
   display: none;
+}
+
+@-webkit-keyframes sacudon {
+  0% {
+    -webkit-transform: translateX(-5px);
+            transform: translateX(-5px);
+  }
+  50% {
+    -webkit-transform: translateX(5px);
+            transform: translateX(5px);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+
+@keyframes sacudon {
+  0% {
+    -webkit-transform: translateX(-5px);
+            transform: translateX(-5px);
+  }
+  50% {
+    -webkit-transform: translateX(5px);
+            transform: translateX(5px);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
 }
 
 nav input {
@@ -241,8 +273,9 @@ header .info {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   width: 100%;
@@ -482,7 +515,7 @@ main .servicios .card .precio::before {
 
 main .servicios .card .comprar {
   width: 100%;
-  background: #0000ff;
+  background: #7463fa;
   color: #fff;
   padding: 1rem;
   margin: 0 auto;
@@ -551,7 +584,7 @@ footer {
       -ms-flex-pack: center;
           justify-content: center;
   color: #fff;
-  font-size: 1rem;
+  font-size: 0.9rem;
 }
 
 .contacto {
