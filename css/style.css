@@ -462,7 +462,7 @@ main .servicios {
           align-items: center;
 }
 
-main .servicios .card {
+main .servicios article {
   background: #f1f1f1;
   width: 80%;
   min-width: 280px;
@@ -478,19 +478,19 @@ main .servicios .card {
           flex-direction: column;
 }
 
-main .servicios .card img {
+main .servicios article img {
   width: auto;
   height: 100px;
 }
 
-main .servicios .card .titulo {
+main .servicios article .titulo {
   text-align: center;
   margin: 0.5rem auto;
   font-size: 1.4rem;
   font-weight: 600;
 }
 
-main .servicios .card .descripcion {
+main .servicios article .descripcion {
   font-size: 0.9rem;
   color: #444;
   font-weight: 400;
@@ -500,20 +500,20 @@ main .servicios .card .descripcion {
   margin: 1rem auto;
 }
 
-main .servicios .card .precio {
+main .servicios article .precio {
   text-align: center;
   font-size: 1.2rem;
   font-weight: 600;
   margin: 1.5rem 0;
 }
 
-main .servicios .card .precio::before {
+main .servicios article .precio::before {
   content: "Valor:";
   font-size: 1rem;
   margin-right: 0.5rem;
 }
 
-main .servicios .card .comprar {
+main .servicios article .comprar {
   width: 100%;
   background: #7463fa;
   color: #fff;
@@ -532,7 +532,7 @@ main .servicios .card .comprar {
   transition: all 200ms linear;
 }
 
-main .servicios .card .comprar:hover {
+main .servicios article .comprar:hover {
   background: #007e00;
 }
 
