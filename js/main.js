@@ -5,6 +5,7 @@ class servicios{
         this.descripcion = descripcion;
         this.precio = precio;
         this.imagen = "./img/" + imagen;
+        this.comprado = false;
     }
 }
 
@@ -28,16 +29,46 @@ function crear(){
             <p class="titulo">${serv.nombre}</p>
             <p class="descripcion">${serv.descripcion}</p>
             <p class="precio">${serv.precio}</p>
-            <p class="comprar" onclick="agregarAlCarrito()">agregar al carrito</p>`
+            <p class="comprar" onclick="agregarAlCarrito(${serv.id})">agregar al carrito</p>`
         padre.appendChild(articulo)
 }
 }
 
+function renderCarrito(){
+   
+ const padreCarrito = document.querySelector(".cart__contenido");
+ if (contenidoCarrito.length>0){
+     padreCarrito.innerHTML="";
+ for (const i of contenidoCarrito){
+    
+     let art = document.createElement("article");
+     art.innerHTML =
+    `     
+     
+     <p class="nombre">${i.nombre}</p>
+     <p class="precio">${i.precio}</p>
+     <p class="cantidad"></p>
 
+    `
+    padreCarrito.appendChild(art)
+ }
+ 
+}
+}
 
 let cantidadProductos=0;
+let contenidoCarrito=[];
 
-function agregarAlCarrito(){
+function agregarAlCarrito(id){
+    const el = serviciosArr.findIndex(j => j.id == id);
+
+    if (!serviciosArr[el].comprado){
+    contenidoCarrito.push(serviciosArr[el]);
+    serviciosArr[el].comprado = true;
+    var botonesComprar = document.querySelectorAll(".comprar");
+    botonesComprar[el].classList.add("comprado");
+    botonesComprar[el].innerHTML = "servicio agregado al carrito";
+   
     const car = document.querySelector(".cantidad");
     if (cantidadProductos<1){
         car.classList.remove("noShow");
@@ -45,7 +76,10 @@ function agregarAlCarrito(){
     cantidadProductos++;
     car.style.animation= "sacudon 150ms";
     car.innerHTML = cantidadProductos;
+    renderCarrito();
+}
     //localStorage.setItem("productosEnCarrito", JSON.stringify())
+   
 }
 
 

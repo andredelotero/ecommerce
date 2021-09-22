@@ -56,10 +56,6 @@ nav .cart {
   height: 20px;
 }
 
-nav .cart:hover ~ .cart__contenido {
-  display: block;
-}
-
 nav .cart .cantidad {
   position: absolute;
   display: -webkit-box;
@@ -103,13 +99,57 @@ nav .cart__contenido {
       -ms-flex-order: 3;
           order: 3;
   top: 65px;
-  width: 250px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
   right: 1rem;
-  padding: 0.4rem;
-  font-size: 0.7rem;
-  background: #fafafa;
-  color: #444;
+  padding: 1rem;
+  background: #e9e9e9;
+  border: 1px solid #444;
+  color: #000;
   display: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  opacity: 0;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+nav .cart__contenido article {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  padding: 1rem;
+}
+
+nav .cart__contenido article img {
+  width: 90px;
+  height: 90px;
+  margin-right: 2rem;
+}
+
+nav .cart__contenido article .nombre {
+  font-weight: 400;
+  font-size: 0.8rem;
+  margin-right: 2rem;
+}
+
+nav .cart__contenido article .precio {
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-right: 2rem;
 }
 
 @-webkit-keyframes sacudon {
@@ -533,6 +573,10 @@ main .servicios article .comprar {
 }
 
 main .servicios article .comprar:hover {
+  background: #007e00;
+}
+
+main .servicios article .comprado {
   background: #007e00;
 }
 
