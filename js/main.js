@@ -5,22 +5,63 @@ class servicios{
         this.descripcion = descripcion;
         this.precio = precio;
         this.imagen = "./img/" + imagen;
-        this.comprado = false;
+        this.cantidadComprada = 0;
     }
 }
 
-const serviciosArr = [];
+//leer  localstorage
+let serviciosArr=JSON.parse(localStorage.getItem("arrayProductos")) ||[];
+let carritoEnStorage = JSON.parse(localStorage.getItem("productosEnStorage")) || []; 
+let cantidadProductos = 0;
+if(JSON.parse(localStorage.getItem("productosEnStorage"))){
+    cantidadProductos = JSON.parse(localStorage.getItem("productosEnStorage")).length;
+}
 
+// mostrar - ocultar contenido del carrito
+cart.addEventListener("click", function(){
+
+if (cart__contenido.style.display=="none"){
+    cart__contenido.style.display="flex"
+}
+else{
+    cart__contenido.style.display="none";
+}
+});
+
+
+//vaciar el carrito
+function borrarLocalStorage(){
+    localStorage.clear(); 
+    renderCarrito();
+    cantidadProductos=0;
+    carritoEnStorage=[];
+    serviciosArr=[];
+    car.classList.add("noShow");
+    localStorage.setItem("productosEnStorage", JSON.stringify(carritoEnStorage));
+    localStorage.setItem("arrayProductos", JSON.stringify(serviciosArr));
+    localStorage.setItem("cantidadProductosComprados", JSON.stringify(cantidadProductos));
+    crearCardServicio();
+    crearArrayProductos();
+}
+
+clear__localStorage.addEventListener("click", borrarLocalStorage);
+
+//crear el array de productos
+function crearArrayProductos(){
+if(serviciosArr.length==0){
 serviciosArr.push (new servicios(01, "Wireframe", "Basandonos en tus ideas, creamos una vista previa del sitio mediante programas de diseño.", 6500, "wireframe.svg"));
 serviciosArr.push (new servicios(02, "Wireframe a html", "Si ya dispones de wireframes, convertimos esas ideas en un sitio real.", 9800, "wireframe_to_html.svg"));
 serviciosArr.push (new servicios(03, "Responsive Design", "Adaptamos tu sitio para que se vea perfecto en dispositivos móviles", 12900, "responsive.svg"));
 serviciosArr.push (new servicios(04, "Optimización del sitio", "Mejoramos los tiempos de carga del sitio mediante optimizaciones varias.", 10200, "optimizacion.svg"));
 serviciosArr.push (new servicios(05, "Integración del staff", "Hacemos el puente de integración entre todos los miembros de tu proyecto.", 18200, "staff_integracion.svg"));
 serviciosArr.push (new servicios(06, "Seguridad del sitio", "Agregado de certificado SSL y verificación de vulnerabilidades en scripts.", 14200, "seguridad.svg"));
+localStorage.setItem("arrayProductos", JSON.stringify(serviciosArr));
+}
+}
 
-
-
-function crear(){
+//crear las cards de los servicios
+function crearCardServicio(){
+    cantidadProductos = JSON.parse(localStorage.getItem("cantidadProductosComprados"))||0;
     const padre = document.querySelector(".servicios");
     for (const serv of serviciosArr){
         let articulo = document.createElement("article");
@@ -30,57 +71,84 @@ function crear(){
             <p class="descripcion">${serv.descripcion}</p>
             <p class="precio">${serv.precio}</p>
             <p class="comprar" onclick="agregarAlCarrito(${serv.id})">agregar al carrito</p>`
-        padre.appendChild(articulo)
+            padre.appendChild(articulo);
+            
 }
-}
-
-function renderCarrito(){
-   
- const padreCarrito = document.querySelector(".cart__contenido");
- if (contenidoCarrito.length>0){
-     padreCarrito.innerHTML="";
- for (const i of contenidoCarrito){
-    
-     let art = document.createElement("article");
-     art.innerHTML =
-    `     
-     
-     <p class="nombre">${i.nombre}</p>
-     <p class="precio">${i.precio}</p>
-     <p class="cantidad"></p>
-
-    `
-    padreCarrito.appendChild(art)
- }
- 
-}
-}
-
-let cantidadProductos=0;
-let contenidoCarrito=[];
-
-function agregarAlCarrito(id){
-    const el = serviciosArr.findIndex(j => j.id == id);
-
-    if (!serviciosArr[el].comprado){
-    contenidoCarrito.push(serviciosArr[el]);
-    serviciosArr[el].comprado = true;
-    var botonesComprar = document.querySelectorAll(".comprar");
-    botonesComprar[el].classList.add("comprado");
-    botonesComprar[el].innerHTML = "servicio agregado al carrito";
-   
-    const car = document.querySelector(".cantidad");
-    if (cantidadProductos<1){
-        car.classList.remove("noShow");
-    }
-    cantidadProductos++;
-    car.style.animation= "sacudon 150ms";
+if (cantidadProductos>0){
+    car.classList.remove("noShow");
     car.innerHTML = cantidadProductos;
+}
+}
+//renderizar el contenido del carrito
+function renderCarrito(){
+    carritoEnStorage = JSON.parse(localStorage.getItem("productosEnStorage"))||[]; 
+    if (cantidadProductos>0){
+        wraper__cta.style.display="flex";
+        wraper__titles.style.display="flex";
+    }
+    if (carritoEnStorage.length>0){
+        padreCarrito.innerHTML="";
+    for (let i of carritoEnStorage){
+        
+        let art = document.createElement("article");
+        let precioParcial = i.precio * i.cantidadComprada;
+        art.innerHTML =
+        `   
+        <img src="${i.imagen}" alt="">  
+        <p class="nombre">${i.nombre}</p>
+        <p class="precio">${i.precio}</p>
+        <p class="cantidad">${i.cantidadComprada}</p>
+        <p>${precioParcial}</p>
+        `
+        padreCarrito.appendChild(art);
+    }
+    
+        }
+        else{
+            padreCarrito.innerHTML="Carrito Vacio";
+            wraper__cta.style.display="none";
+            wraper__titles.style.display="none";
+            
+            setTimeout(()=>cart__contenido.style.display="none",1500);
+            
+        }
+}
+
+//agregar el producto seleccionado al carrito
+function agregarAlCarrito(id){
+    serviciosArr=JSON.parse(localStorage.getItem("arrayProductos"));
+    const el = serviciosArr.findIndex(j => j.id == id);
+    cantidadProductos = JSON.parse(localStorage.getItem("cantidadProductosComprados"))||0;
+    cantidadProductos++;
+    if (cantidadProductos==1){
+        car.classList.remove("noShow");
+        wraper__cta.style.display="flex";
+        wraper__titles.style.display="flex";
+    }
+    if (cantidadProductos>0){
+        wraper__cta.style.display="flex";
+        wraper__titles.style.display="flex";
+    }
+    car.classList.add("animSacudon");
+    setTimeout(()=>car.classList.remove("animSacudon"),300);
+    let duplicado = carritoEnStorage.find(buscado => buscado.id == serviciosArr[el].id);
+    if (!duplicado){
+    carritoEnStorage.push(serviciosArr[el]);
+    serviciosArr[el].cantidadComprada++;
+    }
+    else{
+        let donde =  carritoEnStorage.findIndex(where => where.id === serviciosArr[el].id);
+        serviciosArr[el].cantidadComprada++;
+        carritoEnStorage[donde].cantidadComprada++;
+    }
+    car.innerHTML = cantidadProductos;
+    localStorage.setItem("productosEnStorage", JSON.stringify(carritoEnStorage));
+    localStorage.setItem("arrayProductos", JSON.stringify(serviciosArr));
+    localStorage.setItem("cantidadProductosComprados", JSON.stringify(cantidadProductos));
     renderCarrito();
 }
-    //localStorage.setItem("productosEnCarrito", JSON.stringify())
-   
-}
 
-
-crear();
+//inicializar
+crearArrayProductos();
+crearCardServicio();
+renderCarrito();
