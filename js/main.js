@@ -9,8 +9,8 @@ class servicios{
     }
 }
 
-//leer  localstorage
-let serviciosArr=JSON.parse(localStorage.getItem("arrayProductos")) ||[];
+//leer localstorage cuando se abre la pagina
+let serviciosArr=JSON.parse(localStorage.getItem("arrayProductos")) || [];
 let carritoEnStorage = JSON.parse(localStorage.getItem("productosEnStorage")) || []; 
 let cantidadProductos = 0;
 if(JSON.parse(localStorage.getItem("productosEnStorage"))){
@@ -44,19 +44,20 @@ function borrarLocalStorage(){
     crearArrayProductos();
 }
 
+//agregar el eventListener al boton de limpiar
 clear__localStorage.addEventListener("click", borrarLocalStorage);
 
 //crear el array de productos
 function crearArrayProductos(){
-if(serviciosArr.length==0){
-serviciosArr.push (new servicios(0, "Wireframe", "Basandonos en tus ideas, creamos una vista previa del sitio mediante programas de diseño.", 6500, "wireframe.svg"));
-serviciosArr.push (new servicios(1, "Wireframe a html", "Si ya dispones de wireframes, convertimos esas ideas en un sitio real.", 9800, "wireframe_to_html.svg"));
-serviciosArr.push (new servicios(2, "Responsive Design", "Adaptamos tu sitio para que se vea perfecto en dispositivos móviles", 12900, "responsive.svg"));
-serviciosArr.push (new servicios(3, "Optimización del sitio", "Mejoramos los tiempos de carga del sitio mediante optimizaciones varias.", 10200, "optimizacion.svg"));
-serviciosArr.push (new servicios(4, "Integración del staff", "Hacemos el puente de integración entre todos los miembros de tu proyecto.", 18200, "staff_integracion.svg"));
-serviciosArr.push (new servicios(5, "Seguridad del sitio", "Agregado de certificado SSL y verificación de vulnerabilidades en scripts.", 14200, "seguridad.svg"));
-localStorage.setItem("arrayProductos", JSON.stringify(serviciosArr));
-}
+    if(serviciosArr.length==0){
+        serviciosArr.push (new servicios(0, "Wireframe", "Basandonos en tus ideas, creamos una vista previa del sitio mediante programas de diseño.", 6500, "wireframe.svg"));
+        serviciosArr.push (new servicios(1, "Wireframe a html", "Si ya dispones de wireframes, convertimos esas ideas en un sitio real.", 9800, "wireframe_to_html.svg"));
+        serviciosArr.push (new servicios(2, "Responsive Design", "Adaptamos tu sitio para que se vea perfecto en dispositivos móviles", 12900, "responsive.svg"));
+        serviciosArr.push (new servicios(3, "Optimización del sitio", "Mejoramos los tiempos de carga del sitio mediante optimizaciones varias.", 10200, "optimizacion.svg"));
+        serviciosArr.push (new servicios(4, "Integración del staff", "Hacemos el puente de integración entre todos los miembros de tu proyecto.", 18200, "staff_integracion.svg"));
+        serviciosArr.push (new servicios(5, "Seguridad del sitio", "Agregado de certificado SSL y verificación de vulnerabilidades en scripts.", 14200, "seguridad.svg"));
+        localStorage.setItem("arrayProductos", JSON.stringify(serviciosArr));
+    }
 }
 
 //crear las cards de los servicios
@@ -73,11 +74,11 @@ function crearCardServicio(){
             <p class="comprar" onclick="agregarAlCarrito(${serv.id})">agregar al carrito</p>`
             padre.appendChild(articulo);
             
-}
-if (cantidadProductos>0){
-    car.classList.remove("noShow");
-    car.innerHTML = cantidadProductos;
-}
+        }
+    if (cantidadProductos>0){
+        car.classList.remove("noShow");
+        car.innerHTML = cantidadProductos;
+    }
 }
 
 //eliminar un elemento del carrito
