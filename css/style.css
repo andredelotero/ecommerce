@@ -209,6 +209,14 @@ nav .cart__contenido .wraper__content article .cantidad {
   margin-right: 2rem;
 }
 
+nav .cart__contenido .wraper__content article .eliminar {
+  background-color: #ff0000;
+  border-radius: 50%;
+  color: #fff;
+  padding: 0.1rem 0.5rem;
+  cursor: pointer;
+}
+
 nav .animSacudon {
   -webkit-animation: sacudon 200ms linear;
           animation: sacudon 200ms linear;

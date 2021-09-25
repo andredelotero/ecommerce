@@ -20,7 +20,7 @@ if(JSON.parse(localStorage.getItem("productosEnStorage"))){
 // mostrar - ocultar contenido del carrito
 cart.addEventListener("click", function(){
 
-if (cart__contenido.style.display=="none"){
+if (cart__contenido.style.display!="flex"){
     cart__contenido.style.display="flex"
 }
 else{
@@ -49,12 +49,12 @@ clear__localStorage.addEventListener("click", borrarLocalStorage);
 //crear el array de productos
 function crearArrayProductos(){
 if(serviciosArr.length==0){
-serviciosArr.push (new servicios(01, "Wireframe", "Basandonos en tus ideas, creamos una vista previa del sitio mediante programas de diseño.", 6500, "wireframe.svg"));
-serviciosArr.push (new servicios(02, "Wireframe a html", "Si ya dispones de wireframes, convertimos esas ideas en un sitio real.", 9800, "wireframe_to_html.svg"));
-serviciosArr.push (new servicios(03, "Responsive Design", "Adaptamos tu sitio para que se vea perfecto en dispositivos móviles", 12900, "responsive.svg"));
-serviciosArr.push (new servicios(04, "Optimización del sitio", "Mejoramos los tiempos de carga del sitio mediante optimizaciones varias.", 10200, "optimizacion.svg"));
-serviciosArr.push (new servicios(05, "Integración del staff", "Hacemos el puente de integración entre todos los miembros de tu proyecto.", 18200, "staff_integracion.svg"));
-serviciosArr.push (new servicios(06, "Seguridad del sitio", "Agregado de certificado SSL y verificación de vulnerabilidades en scripts.", 14200, "seguridad.svg"));
+serviciosArr.push (new servicios(0, "Wireframe", "Basandonos en tus ideas, creamos una vista previa del sitio mediante programas de diseño.", 6500, "wireframe.svg"));
+serviciosArr.push (new servicios(1, "Wireframe a html", "Si ya dispones de wireframes, convertimos esas ideas en un sitio real.", 9800, "wireframe_to_html.svg"));
+serviciosArr.push (new servicios(2, "Responsive Design", "Adaptamos tu sitio para que se vea perfecto en dispositivos móviles", 12900, "responsive.svg"));
+serviciosArr.push (new servicios(3, "Optimización del sitio", "Mejoramos los tiempos de carga del sitio mediante optimizaciones varias.", 10200, "optimizacion.svg"));
+serviciosArr.push (new servicios(4, "Integración del staff", "Hacemos el puente de integración entre todos los miembros de tu proyecto.", 18200, "staff_integracion.svg"));
+serviciosArr.push (new servicios(5, "Seguridad del sitio", "Agregado de certificado SSL y verificación de vulnerabilidades en scripts.", 14200, "seguridad.svg"));
 localStorage.setItem("arrayProductos", JSON.stringify(serviciosArr));
 }
 }
@@ -79,8 +79,31 @@ if (cantidadProductos>0){
     car.innerHTML = cantidadProductos;
 }
 }
+
+//eliminar un elemento del carrito
+function eliminar(idABorrar){
+    cantidadProductos = JSON.parse(localStorage.getItem("cantidadProductosComprados"));
+    carritoEnStorage = JSON.parse(localStorage.getItem("productosEnStorage"));
+    serviciosArr=JSON.parse(localStorage.getItem("arrayProductos"));
+    let aBorrar = carritoEnStorage.findIndex((el)=>el.id==idABorrar);
+    let aBorrarEnArray = serviciosArr.findIndex((el)=>el.id==idABorrar);
+    cantidadProductos -= carritoEnStorage[aBorrar].cantidadComprada;
+    carritoEnStorage[aBorrar].cantidadComprada = 0;
+    serviciosArr[aBorrarEnArray].cantidadComprada=0;
+    carritoEnStorage = carritoEnStorage.filter((el)=>el.id!=idABorrar);
+    localStorage.setItem("productosEnStorage", JSON.stringify(carritoEnStorage));
+    localStorage.setItem("arrayProductos", JSON.stringify(serviciosArr));
+    localStorage.setItem("cantidadProductosComprados", JSON.stringify(cantidadProductos));
+    car.innerHTML = cantidadProductos;
+    if (cantidadProductos<1){
+        car.classList.add("noShow");
+    }
+    renderCarrito();
+}
+
 //renderizar el contenido del carrito
 function renderCarrito(){
+    let valorTotal=0;
     carritoEnStorage = JSON.parse(localStorage.getItem("productosEnStorage"))||[]; 
     if (cantidadProductos>0){
         wraper__cta.style.display="flex";
@@ -92,6 +115,7 @@ function renderCarrito(){
         
         let art = document.createElement("article");
         let precioParcial = i.precio * i.cantidadComprada;
+        valorTotal+=precioParcial;
         art.innerHTML =
         `   
         <img src="${i.imagen}" alt="">  
@@ -99,9 +123,19 @@ function renderCarrito(){
         <p class="precio">${i.precio}</p>
         <p class="cantidad">${i.cantidadComprada}</p>
         <p>${precioParcial}</p>
+        <p class="eliminar" onclick="eliminar(${i.id})">X</p>
         `
         padreCarrito.appendChild(art);
+       
     }
+    let artTotal = document.createElement("article");
+    artTotal.innerHTML=
+    `
+   
+    <p class="cantidad">Cantidad de productos: ${cantidadProductos}</p>
+    <p>Valor total: ${valorTotal}</p>
+    `
+    padreCarrito.appendChild(artTotal);
     
         }
         else{
@@ -122,8 +156,6 @@ function agregarAlCarrito(id){
     cantidadProductos++;
     if (cantidadProductos==1){
         car.classList.remove("noShow");
-        wraper__cta.style.display="flex";
-        wraper__titles.style.display="flex";
     }
     if (cantidadProductos>0){
         wraper__cta.style.display="flex";
