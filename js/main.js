@@ -1,15 +1,6 @@
-class servicios{
-    constructor (id, nombre, descripcion, precio, imagen){
-        this.id = id;
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.precio = precio;
-        this.imagen = "./img/" + imagen;
-        this.cantidadComprada = 0;
-    }
-}
 
 //leer localstorage cuando se abre la pagina
+let usuariosArr=JSON.parse(localStorage.getItem("arrayUsuarios")) || [];
 let serviciosArr=JSON.parse(localStorage.getItem("arrayProductos")) || [];
 let carritoEnStorage = JSON.parse(localStorage.getItem("productosEnStorage")) || []; 
 let cantidadProductos = 0;
@@ -180,6 +171,26 @@ function agregarAlCarrito(id){
     localStorage.setItem("cantidadProductosComprados", JSON.stringify(cantidadProductos));
     renderCarrito();
 }
+
+
+//seccion usuarios
+//---------------
+function mostrarLogueo(){
+    if(logueoToggle.style.display!="flex"){
+        logueoToggle.style.display="flex";
+    }
+    else{
+        logueoToggle.style.display="none";
+    }
+    
+}
+logueo.addEventListener("click", mostrarLogueo);
+//crear usuario
+
+//loguearse
+
+
+//verificar
 
 //inicializar
 crearArrayProductos();

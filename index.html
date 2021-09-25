@@ -32,7 +32,7 @@
                <div class="cta__clear">borrar</div>
            </div>
         </div>
-        <input type="checkbox" aria-hidden="true" tabindex='-1' >
+        <input type="checkbox" aria-hidden="true" class="input" tabindex='-1' >
         <div class="burguer">
             <div class="linea1"></div>    
             <div class="linea2"></div>    
@@ -44,6 +44,27 @@
                 <li>servicios</li>
                 <li>contacto</li>
             </ul>
+        </div>
+        <div class="usuarios">
+            <img src="./img/users.png" alt="" id="logueo">
+            <div class="logueo">
+                <form>
+                    <div>
+                      <label for="nombre">Nombre</label>
+                      <input type="text" id="nombre" placeholder="Nombre">
+                    </div>
+                    <div>
+                      <label for="clave">Clave</label>
+                      <input type="password" id="clave" placeholder="Clave">
+                    </div>
+                    <div class="botones">
+                        <p class="boton--logueo" type="submit">Ingresar</p>
+                        <p class="boton--registro" type="submit">Registrate</p>
+                    </div>
+                  </form>  
+                  <p class="infoLogueo">
+                  </p>              
+            </div>
         </div>
     </nav>
     <header>
@@ -101,6 +122,7 @@
     <footer>
         2021 - Servicios Informáticos - André Gama del Otero
     </footer>
+    <script defer src="./js/objects.js"></script>
     <script defer src="./js/dom.js"></script>
     <script defer src="./js/main.js"></script>
 </body>

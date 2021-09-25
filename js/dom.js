@@ -5,3 +5,10 @@ const wraper__cta = document.querySelector(".wraper__cta");
 const wraper__titles = document.querySelector(".wraper__titles");
 const clear__localStorage = document.querySelector(".cta__clear");
 const padreCarrito = document.querySelector(".wraper__content");
+
+//logueo y registro de usuarios
+const logueo = document.querySelector("#logueo");
+const logueoToggle = document.querySelector(".logueo");
+const infoLogueo = document.querySelector(".infoLogueo");
+const botonLogueo = document.querySelector(".boton--logueo");
+const botonRegistro = document.querySelector(".boton--registro");
