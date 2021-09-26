@@ -3,7 +3,7 @@ const cart__contenido = document.querySelector(".cart__contenido");
 const car = document.querySelector(".cantidad");
 const wraper__cta = document.querySelector(".wraper__cta");
 const wraper__titles = document.querySelector(".wraper__titles");
-const clear__localStorage = document.querySelector(".cta__clear");
+const vaciar__carrito = document.querySelector(".cta__clear");
 const padreCarrito = document.querySelector(".wraper__content");
 
 //logueo y registro de usuarios
@@ -24,5 +24,6 @@ const infoLogueo = document.querySelector(".infoLogueo");
 const botonLogueo = document.querySelector(".boton--logueo");
 const botonRegistro = document.querySelector(".boton--registro");
 const botonConfirmar = document.querySelector(".boton--confirmar");
+const cerrarSesion = document.querySelector(".cerrarSesion");
 
 const modal = document.querySelector("#modal");

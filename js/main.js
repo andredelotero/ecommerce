@@ -22,8 +22,8 @@ else{
 
 
 //vaciar el carrito
-function borrarLocalStorage(){
-    localStorage.clear(); 
+function vaciarCarrito(){
+    localStorage.removeItem("productosEnStorage");
     renderCarrito();
     cantidadProductos=0;
     carritoEnStorage=[];
@@ -37,7 +37,7 @@ function borrarLocalStorage(){
 }
 
 //agregar el eventListener al boton de limpiar
-clear__localStorage.addEventListener("click", borrarLocalStorage);
+vaciar__carrito.addEventListener("click", vaciarCarrito);
 
 //crear el array de productos
 function crearArrayProductos(){
@@ -221,30 +221,41 @@ function mostrarUsuario(){
 function loguearse(){
     usuariosArr=JSON.parse(localStorage.getItem("arrayUsuarios")) || [];
     usuarioLogueado=JSON.parse(localStorage.getItem("usuarioLogueado")) || [];
-    let buscarUsuario = usuariosArr.findIndex((el)=>el.nombre==nombreLogueo.value);
-    let buscarClave = usuariosArr[buscarUsuario].clave == claveLogueo.value;
-    if (buscarClave){
-        usuarioLogueado.push (usuariosArr[buscarUsuario]);
-        localStorage.setItem("usuarioLogueado", JSON.stringify(usuarioLogueado));
-        infoLogueo.style.color="#007e00"; 
-        infoLogueo.innerHTML="Usuario logueado con exito";
-        nombreLogueo.style.border="1px solid #007e00"
-        claveLogueo.style.border="1px solid #007e00"
-        setTimeout(()=>{    
-            mostrarUsuario();
-            nombreLogueo.value="";
-            claveLogueo.value="";
-            infoLogueo.innerHTML="";
-            logueoToggle.style.display="none";
-            nombreLogueo.style.border="1px solid #666"
-            claveLogueo.style.border="1px solid #666"
-        },2000);  
+    if (usuariosArr.length<1){
+        infoLogueo.style.color="#ff0000"; 
+        infoLogueo.innerHTML="No hay usuarios registrados";
+        setTimeout(()=>infoLogueo.innerHTML="",1500)
     }
     else{
-        infoLogueo.style.color="#ff0000";
-        infoLogueo.innerHTML="Usuario inexistente o clave incorrecta";
+        let buscarUsuario = usuariosArr.findIndex((el)=>el.nombre==nombreLogueo.value);
+        let buscarClave = usuariosArr[buscarUsuario].clave == claveLogueo.value;
+        if (buscarClave){
+            usuarioLogueado.push (usuariosArr[buscarUsuario]);
+            localStorage.setItem("usuarioLogueado", JSON.stringify(usuarioLogueado));
+            infoLogueo.style.color="#007e00"; 
+            infoLogueo.innerHTML="Usuario logueado con exito";
+            nombreLogueo.style.border="1px solid #007e00"
+            claveLogueo.style.border="1px solid #007e00"
+            setTimeout(()=>{    
+                mostrarUsuario();
+                nombreLogueo.value="";
+                claveLogueo.value="";
+                infoLogueo.innerHTML="";
+                logueoToggle.style.display="none";
+                nombreLogueo.style.border="1px solid #666"
+                claveLogueo.style.border="1px solid #666"
+            },2000);  
+        }
+        else{
+            infoLogueo.style.color="#ff0000";
+            infoLogueo.innerHTML="Usuario inexistente o clave incorrecta";
+        }
     }
+}
 
+//cerrar sesion
+function logOut(){
+    localStorage.removeItem("usuarioLogueado");
 }
 
 
@@ -316,6 +327,7 @@ function verificar(){
         nombreLogueo.style.border="1px solid #007e00"
         claveLogueo.style.border="1px solid #007e00"
         claveLogueoRepetir.style.border="1px solid #007e00"
+        loguearse();
         setTimeout(()=>{    
             nombreLogueo.value="";
             claveLogueo.value="";
@@ -329,11 +341,12 @@ function verificar(){
             nombreLogueo.style.border="1px solid #666"
             claveLogueo.style.border="1px solid #666"
             claveLogueoRepetir.style.border="1px solid #666"
+            
         },2000);  
     }
 }
 
-
+cerrarSesion.addEventListener("click", logOut);
 botonLogueo.addEventListener("click", loguearse);
 botonRegistro.addEventListener("click", register);
 botonConfirmar.addEventListener("click", verificar);

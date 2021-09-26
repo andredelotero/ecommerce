@@ -296,6 +296,16 @@ nav .usuarios .menuUser {
   color: #000;
 }
 
+nav .usuarios .menuUser .cerrarSesion {
+  background: #fff;
+  font-weight: 600;
+  padding: 1rem 2rem;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  cursor: pointer;
+}
+
 nav .usuarios .logueo {
   display: none;
   -webkit-box-orient: vertical;
@@ -852,66 +862,6 @@ footer {
           justify-content: center;
   color: #fff;
   font-size: 0.9rem;
-}
-
-.contacto {
-  width: 100%;
-  max-width: 500px;
-}
-
-.contacto .form {
-  background: #e6e6e6;
-  border-radius: 8px;
-  padding: 20px 30px;
-}
-
-.contacto h2 {
-  margin: 10px 0;
-  padding-bottom: 10px;
-  color: #78788c;
-  border-bottom: 3px solid #78788c;
-}
-
-.contacto input {
-  width: 100%;
-  padding: 10px;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  background: none;
-  outline: none;
-  resize: none;
-  border: 0;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  border-bottom: 2px solid #bebed2;
-}
-
-.contacto input:focus {
-  border-bottom: 2px solid #78788c;
-}
-
-.contacto p:before {
-  content: attr(type);
-  display: block;
-  margin: 28px 0 0;
-  font-size: 14px;
-  color: #5a5a5a;
-}
-
-.contacto button {
-  padding: 8px 12px;
-  margin: 2rem 0 0;
-  border: 2px solid #78788c;
-  background: 0;
-  color: #5a5a6e;
-  cursor: pointer;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-}
-
-.contacto button:hover {
-  background: #78788c;
-  color: #fff;
 }
 
 .modal {
