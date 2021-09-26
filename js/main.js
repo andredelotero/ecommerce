@@ -1,6 +1,7 @@
 
 //leer localstorage cuando se abre la pagina
 let usuariosArr=JSON.parse(localStorage.getItem("arrayUsuarios")) || [];
+let usuarioLogueado=JSON.parse(localStorage.getItem("usuarioLogueado")) || [];
 let serviciosArr=JSON.parse(localStorage.getItem("arrayProductos")) || [];
 let carritoEnStorage = JSON.parse(localStorage.getItem("productosEnStorage")) || []; 
 let cantidadProductos = 0;
@@ -185,14 +186,142 @@ function mostrarLogueo(){
     
 }
 logueo.addEventListener("click", mostrarLogueo);
-//crear usuario
+//mostrar usuario logueado
+function mostrarUsuario(){
+    usuarioLogueado=JSON.parse(localStorage.getItem("usuarioLogueado")) || [];
+    if(usuarioLogueado.length>0){
+        logueo.style.display="none";
+        usuarioIn.style.display="flex"
+        usuarioIn.innerText=usuarioLogueado[0].nombre[0].toUpperCase();    
+    }
+}
+
 
 //loguearse
+function loguearse(){
+    usuariosArr=JSON.parse(localStorage.getItem("arrayUsuarios")) || [];
+    usuarioLogueado=JSON.parse(localStorage.getItem("usuarioLogueado")) || [];
+    let buscarUsuario = usuariosArr.findIndex((el)=>el.nombre==nombreLogueo.value);
+    let buscarClave = usuariosArr[buscarUsuario].clave == claveLogueo.value;
+    if (buscarClave){
+        usuarioLogueado.push (usuariosArr[buscarUsuario]);
+        localStorage.setItem("usuarioLogueado", JSON.stringify(usuarioLogueado));
+        infoLogueo.style.color="#007e00"; 
+        infoLogueo.innerHTML="Usuario logueado con exito";
+        nombreLogueo.style.border="1px solid #007e00"
+        claveLogueo.style.border="1px solid #007e00"
+        setTimeout(()=>{    
+            mostrarUsuario();
+            nombreLogueo.value="";
+            claveLogueo.value="";
+            infoLogueo.innerHTML="";
+            logueoToggle.style.display="none";
+            nombreLogueo.style.border="1px solid #666"
+            claveLogueo.style.border="1px solid #666"
+        },2000);  
+    }
+    else{
+        infoLogueo.style.color="#ff0000";
+        infoLogueo.innerHTML="Usuario inexistente o clave incorrecta";
+    }
+
+}
 
 
-//verificar
+//crear usuario
+function register(){
+    repetirClave.classList.remove("noShow");
+    botonLogueo.style.display="none";
+    botonRegistro.style.display="none";
+    botonConfirmar.style.display="inline-block";
+    }
+    
+//validacion del formulario de crear usuario
+function verificar(){
+    let errorEnNombre, errorEnClave, errorEnRepetir, errorComparar = false;
+    usuariosArr=JSON.parse(localStorage.getItem("arrayUsuarios")) || [];
+    if (nombreLogueo.value.length<2){
+        nombreLogueo.style.border="1px solid #ff0000"
+        errorNombre.innerHTML="El nombre de usuario tiene que ser mayor a 2 caracteres";
+        errorEnNombre=true;
+    }
+    else{
+        nombreLogueo.style.border="1px solid #666"
+        errorNombre.innerHTML="";
+        errorEnNombre=false;
+    }
+    if(claveLogueo.value.length<4){
+        claveLogueo.style.border="1px solid #ff0000";
+        errorClave.innerText="La clave tiene que ser mayor a 4 caracteres";
+        errorEnClave=true;
+        
+    }
+    else{
+        claveLogueo.style.border="1px solid #666";
+        errorClave.innerText="";
+        errorEnClave=false;
+    }
+    if(claveLogueoRepetir.value.length<4){
+        claveLogueoRepetir.style.border="1px solid #ff0000";
+        errorRepetirClave.innerText="La clave tiene que ser mayor a 4 caracteres";
+        errorEnRepetir=true;
+        
+    }
+    else{
+        claveLogueoRepetir.style.border="1px solid #666";
+        errorRepetirClave.innerText="";
+        errorEnRepetir=false;
+    }
+
+    if (claveLogueo.value != claveLogueoRepetir.value){
+        infoLogueo.style.color="#ff0000";
+        infoLogueo.innerHTML="\nLas claves no coinciden\n";
+        errorComparar=true;
+    }
+    else{
+        infoLogueo.style.color="";
+        infoLogueo.innerHTML="";
+        errorComparar=false;
+    }
+    if (!errorEnNombre && !errorEnClave && !errorEnRepetir && !errorComparar ){
+        if (usuariosArr.length==0){
+            usuariosArr.push(new usuario(0, nombreLogueo.value, claveLogueo.value, "admin", []))
+        }
+        else{
+           usuariosArr.push(new usuario(usuariosArr.length, nombreLogueo.value, claveLogueo.value, "user", []))
+        }
+        localStorage.setItem("arrayUsuarios", JSON.stringify(usuariosArr));
+        infoLogueo.style.color="#007e00"; 
+        infoLogueo.innerHTML="Usuario creado con exito";
+        nombreLogueo.style.border="1px solid #007e00"
+        claveLogueo.style.border="1px solid #007e00"
+        claveLogueoRepetir.style.border="1px solid #007e00"
+        setTimeout(()=>{    
+            nombreLogueo.value="";
+            claveLogueo.value="";
+            claveLogueoRepetir.value="";
+            infoLogueo.innerHTML="";
+            repetirClave.classList.add("noShow");
+            logueoToggle.style.display="none";
+            botonLogueo.style.display="inline-block";
+            botonRegistro.style.display="inline-block";
+            botonConfirmar.style.display="none";
+            nombreLogueo.style.border="1px solid #666"
+            claveLogueo.style.border="1px solid #666"
+            claveLogueoRepetir.style.border="1px solid #666"
+        },2000);  
+    }
+}
+
+
+botonLogueo.addEventListener("click", loguearse);
+botonRegistro.addEventListener("click", register);
+botonConfirmar.addEventListener("click", verificar);
+
+
 
 //inicializar
+mostrarUsuario();
 crearArrayProductos();
 crearCardServicio();
 renderCarrito();

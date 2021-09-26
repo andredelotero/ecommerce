@@ -47,19 +47,32 @@
         </div>
         <div class="usuarios">
             <img src="./img/users.png" alt="" id="logueo">
+            <div class="usuario" id="user">
+                
+            </div>
             <div class="logueo">
                 <form>
-                    <div>
-                      <label for="nombre">Nombre</label>
-                      <input type="text" id="nombre" placeholder="Nombre">
-                    </div>
-                    <div>
-                      <label for="clave">Clave</label>
-                      <input type="password" id="clave" placeholder="Clave">
+                    <div id="datosUsuario">
+                        <div>
+                            <label for="nombreLogueo">Nombre</label>
+                            <input type="text" id="nombreLogueo" placeholder="Nombre">
+                            <span class="error" id="errorNombre"></span>
+                        </div>
+                        <div>
+                            <label for="claveLogueo">Clave</label>
+                            <input type="password" id="claveLogueo" placeholder="Clave">
+                            <span class="error" id="errorClave"></span>
+                        </div>
+                        <div id ="repetirClave" class="noShow">
+                            <label for="claveLogueoRepetir">Repetir Clave</label>
+                            <input type="password" id="claveLogueoRepetir" placeholder="Repetir clave">
+                            <span class="error" id="errorRepetirClave"></span>
+                        </div>
                     </div>
                     <div class="botones">
                         <p class="boton--logueo" type="submit">Ingresar</p>
                         <p class="boton--registro" type="submit">Registrate</p>
+                        <p class="boton--confirmar" type="submit">Confirmar</p>
                     </div>
                   </form>  
                   <p class="infoLogueo">

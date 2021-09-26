@@ -263,6 +263,21 @@ nav .usuarios img {
   cursor: pointer;
 }
 
+nav .usuarios .usuario {
+  width: 50px;
+  height: 50px;
+  background: #007e00;
+  border-radius: 50%;
+  display: none;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: 1.4rem;
+}
+
 nav .usuarios .logueo {
   display: none;
   -webkit-box-orient: vertical;
@@ -288,13 +303,24 @@ nav .usuarios .logueo form div {
   margin: 1rem auto;
 }
 
+nav .usuarios .logueo form div .noShow {
+  display: none;
+}
+
 nav .usuarios .logueo form label {
   display: inline-block;
-  width: 80px;
+}
+
+nav .usuarios .logueo form .error {
+  color: #ff0000;
+  font-size: 0.8rem;
+  display: inline-block;
+  height: 1rem;
+  margin-top: 0;
 }
 
 nav .usuarios .logueo form input {
-  display: inline-block;
+  display: block;
   padding: 1rem;
   border: 1px solid #666;
   width: 250px;
@@ -305,7 +331,8 @@ nav .usuarios .logueo form .botones {
 }
 
 nav .usuarios .logueo form .botones .boton--logueo,
-nav .usuarios .logueo form .botones .boton--registro {
+nav .usuarios .logueo form .botones .boton--registro,
+nav .usuarios .logueo form .botones .boton--confirmar {
   display: inline-block;
   padding: 1rem 2rem;
   font-weight: 600;
@@ -321,6 +348,12 @@ nav .usuarios .logueo form .botones .boton--logueo {
 
 nav .usuarios .logueo form .botones .boton--logueo:hover {
   background: #0069d9;
+}
+
+nav .usuarios .logueo form .botones .boton--confirmar {
+  color: #fff;
+  background: #007e00;
+  display: none;
 }
 
 nav .usuarios .logueo form .botones .boton--registro {
