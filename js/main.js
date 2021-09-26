@@ -143,34 +143,42 @@ function renderCarrito(){
 
 //agregar el producto seleccionado al carrito
 function agregarAlCarrito(id){
-    serviciosArr=JSON.parse(localStorage.getItem("arrayProductos"));
-    const el = serviciosArr.findIndex(j => j.id == id);
-    cantidadProductos = JSON.parse(localStorage.getItem("cantidadProductosComprados"))||0;
-    cantidadProductos++;
-    if (cantidadProductos==1){
-        car.classList.remove("noShow");
-    }
-    if (cantidadProductos>0){
-        wraper__cta.style.display="flex";
-        wraper__titles.style.display="flex";
-    }
-    car.classList.add("animSacudon");
-    setTimeout(()=>car.classList.remove("animSacudon"),300);
-    let duplicado = carritoEnStorage.find(buscado => buscado.id == serviciosArr[el].id);
-    if (!duplicado){
-    carritoEnStorage.push(serviciosArr[el]);
-    serviciosArr[el].cantidadComprada++;
+    usuarioLogueado=JSON.parse(localStorage.getItem("usuarioLogueado")) || [];
+    if(usuarioLogueado.length<1){
+        modal.style.display="flex";
+        modal.innerText="Para poder agregar productos al carrito, por favor ingresa o registrate";
+        setTimeout(()=>modal.style.display="none", 1500);
     }
     else{
-        let donde =  carritoEnStorage.findIndex(where => where.id === serviciosArr[el].id);
+        serviciosArr=JSON.parse(localStorage.getItem("arrayProductos"));
+        const el = serviciosArr.findIndex(j => j.id == id);
+        cantidadProductos = JSON.parse(localStorage.getItem("cantidadProductosComprados"))||0;
+        cantidadProductos++;
+        if (cantidadProductos==1){
+            car.classList.remove("noShow");
+        }
+        if (cantidadProductos>0){
+            wraper__cta.style.display="flex";
+            wraper__titles.style.display="flex";
+        }
+        car.classList.add("animSacudon");
+        setTimeout(()=>car.classList.remove("animSacudon"),300);
+        let duplicado = carritoEnStorage.find(buscado => buscado.id == serviciosArr[el].id);
+        if (!duplicado){
+        carritoEnStorage.push(serviciosArr[el]);
         serviciosArr[el].cantidadComprada++;
-        carritoEnStorage[donde].cantidadComprada++;
+        }
+        else{
+            let donde =  carritoEnStorage.findIndex(where => where.id === serviciosArr[el].id);
+            serviciosArr[el].cantidadComprada++;
+            carritoEnStorage[donde].cantidadComprada++;
+        }
+        car.innerHTML = cantidadProductos;
+        localStorage.setItem("productosEnStorage", JSON.stringify(carritoEnStorage));
+        localStorage.setItem("arrayProductos", JSON.stringify(serviciosArr));
+        localStorage.setItem("cantidadProductosComprados", JSON.stringify(cantidadProductos));
+        renderCarrito();
     }
-    car.innerHTML = cantidadProductos;
-    localStorage.setItem("productosEnStorage", JSON.stringify(carritoEnStorage));
-    localStorage.setItem("arrayProductos", JSON.stringify(serviciosArr));
-    localStorage.setItem("cantidadProductosComprados", JSON.stringify(cantidadProductos));
-    renderCarrito();
 }
 
 
@@ -186,13 +194,25 @@ function mostrarLogueo(){
     
 }
 logueo.addEventListener("click", mostrarLogueo);
+
+//mostrar el menu del usuario logueado
+function menuUsuario(){
+    if (contenidoMenuUsuario.style.display!="flex"){
+        contenidoMenuUsuario.style.display="flex";
+    }
+    else{
+        contenidoMenuUsuario.style.display="none";
+    }
+}
+
 //mostrar usuario logueado
 function mostrarUsuario(){
     usuarioLogueado=JSON.parse(localStorage.getItem("usuarioLogueado")) || [];
     if(usuarioLogueado.length>0){
         logueo.style.display="none";
         usuarioIn.style.display="flex"
-        usuarioIn.innerText=usuarioLogueado[0].nombre[0].toUpperCase();    
+        usuarioIn.innerText=usuarioLogueado[0].nombre[0].toUpperCase();
+        usuarioIn.addEventListener("click", menuUsuario)    
     }
 }
 
@@ -235,7 +255,7 @@ function register(){
     botonRegistro.style.display="none";
     botonConfirmar.style.display="inline-block";
     }
-    
+
 //validacion del formulario de crear usuario
 function verificar(){
     let errorEnNombre, errorEnClave, errorEnRepetir, errorComparar = false;

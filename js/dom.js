@@ -18,8 +18,11 @@ const errorNombre = document.querySelector("#errorNombre");
 const errorClave = document.querySelector("#errorClave");
 const errorRepetirClave = document.querySelector("#errorRepetirClave");
 const usuarioIn = document.querySelector("#user");
+const contenidoMenuUsuario = document.querySelector(".menuUser");
 
 const infoLogueo = document.querySelector(".infoLogueo");
 const botonLogueo = document.querySelector(".boton--logueo");
 const botonRegistro = document.querySelector(".boton--registro");
 const botonConfirmar = document.querySelector(".boton--confirmar");
+
+const modal = document.querySelector("#modal");
