@@ -1,7 +1,7 @@
 
 //leer localstorage cuando se abre la pagina
 let usuariosArr=JSON.parse(localStorage.getItem("arrayUsuarios")) || [];
-let usuarioLogueado=JSON.parse(localStorage.getItem("usuarioLogueado")) || [];
+let usuarioLogueado=JSON.parse(sessionStorage.getItem("usuarioLogueado")) || [];
 let serviciosArr=JSON.parse(localStorage.getItem("arrayProductos")) || [];
 let carritoEnStorage = JSON.parse(localStorage.getItem("productosEnStorage")) || []; 
 let cantidadProductos = 0;
@@ -27,11 +27,13 @@ function vaciarCarrito(){
     renderCarrito();
     cantidadProductos=0;
     carritoEnStorage=[];
-    serviciosArr=[];
     car.classList.add("noShow");
     localStorage.setItem("productosEnStorage", JSON.stringify(carritoEnStorage));
-    localStorage.setItem("arrayProductos", JSON.stringify(serviciosArr));
     localStorage.setItem("cantidadProductosComprados", JSON.stringify(cantidadProductos));
+    
+    localStorage.setItem("arrayProductos", JSON.stringify(serviciosArr));
+    serviciosArr=[];
+    
     crearCardServicio();
     crearArrayProductos();
 }
@@ -55,6 +57,7 @@ function crearArrayProductos(){
 //crear las cards de los servicios
 function crearCardServicio(){
     cantidadProductos = JSON.parse(localStorage.getItem("cantidadProductosComprados"))||0;
+    usuarioLogueado=JSON.parse(sessionStorage.getItem("usuarioLogueado")) || [];
     const padre = document.querySelector(".servicios");
     for (const serv of serviciosArr){
         let articulo = document.createElement("article");
@@ -67,7 +70,7 @@ function crearCardServicio(){
             padre.appendChild(articulo);
             
         }
-    if (cantidadProductos>0){
+    if ((cantidadProductos>0) && (usuarioLogueado.length>0)){
         car.classList.remove("noShow");
         car.innerHTML = cantidadProductos;
     }
@@ -98,11 +101,18 @@ function eliminar(idABorrar){
 function renderCarrito(){
     let valorTotal=0;
     carritoEnStorage = JSON.parse(localStorage.getItem("productosEnStorage"))||[]; 
-    if (cantidadProductos>0){
+    usuarioLogueado=JSON.parse(sessionStorage.getItem("usuarioLogueado")) || [];
+    if ((cantidadProductos>0) && (usuarioLogueado.length>0)){
         wraper__cta.style.display="flex";
         wraper__titles.style.display="flex";
+        car.classList.remove("noShow");
+        car.innerHTML=cantidadProductos;
     }
-    if (carritoEnStorage.length>0){
+    else{
+        wraper__cta.style.display="none";
+        wraper__titles.style.display="none";
+    }
+    if ((carritoEnStorage.length>0) && (usuarioLogueado.length>0)){
         padreCarrito.innerHTML="";
     for (let i of carritoEnStorage){
         
@@ -143,7 +153,7 @@ function renderCarrito(){
 
 //agregar el producto seleccionado al carrito
 function agregarAlCarrito(id){
-    usuarioLogueado=JSON.parse(localStorage.getItem("usuarioLogueado")) || [];
+    usuarioLogueado=JSON.parse(sessionStorage.getItem("usuarioLogueado")) || [];
     if(usuarioLogueado.length<1){
         modal.style.display="flex";
         modal.innerText="Para poder agregar productos al carrito, por favor ingresa o registrate";
@@ -207,7 +217,7 @@ function menuUsuario(){
 
 //mostrar usuario logueado
 function mostrarUsuario(){
-    usuarioLogueado=JSON.parse(localStorage.getItem("usuarioLogueado")) || [];
+    usuarioLogueado=JSON.parse(sessionStorage.getItem("usuarioLogueado")) || [];
     if(usuarioLogueado.length>0){
         logueo.style.display="none";
         usuarioIn.style.display="flex"
@@ -220,7 +230,7 @@ function mostrarUsuario(){
 //loguearse
 function loguearse(){
     usuariosArr=JSON.parse(localStorage.getItem("arrayUsuarios")) || [];
-    usuarioLogueado=JSON.parse(localStorage.getItem("usuarioLogueado")) || [];
+    usuarioLogueado=JSON.parse(sessionStorage.getItem("usuarioLogueado")) || [];
     if (usuariosArr.length<1){
         infoLogueo.style.color="#ff0000"; 
         infoLogueo.innerHTML="No hay usuarios registrados";
@@ -231,12 +241,13 @@ function loguearse(){
         let buscarClave = usuariosArr[buscarUsuario].clave == claveLogueo.value;
         if (buscarClave){
             usuarioLogueado.push (usuariosArr[buscarUsuario]);
-            localStorage.setItem("usuarioLogueado", JSON.stringify(usuarioLogueado));
+            sessionStorage.setItem("usuarioLogueado", JSON.stringify(usuarioLogueado));
             infoLogueo.style.color="#007e00"; 
             infoLogueo.innerHTML="Usuario logueado con exito";
             nombreLogueo.style.border="1px solid #007e00"
             claveLogueo.style.border="1px solid #007e00"
             setTimeout(()=>{    
+                renderCarrito();
                 mostrarUsuario();
                 nombreLogueo.value="";
                 claveLogueo.value="";
@@ -255,7 +266,14 @@ function loguearse(){
 
 //cerrar sesion
 function logOut(){
-    localStorage.removeItem("usuarioLogueado");
+    sessionStorage.removeItem("usuarioLogueado");
+    logueo.style.display="flex";
+    usuarioIn.style.display="none"
+    usuarioIn.innerText="";
+    car.classList.add("noShow");
+    contenidoMenuUsuario.style.display="none";
+   
+    renderCarrito();
 }
 
 
