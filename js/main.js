@@ -5,6 +5,8 @@ let usuarioLogueado=JSON.parse(sessionStorage.getItem("usuarioLogueado")) || [];
 let serviciosArr=JSON.parse(localStorage.getItem("arrayProductos")) || [];
 let carritoEnStorage = JSON.parse(localStorage.getItem("productosEnStorage")) || []; 
 let cantidadProductos = 0;
+let timeToExpire=60;
+let timer=0;
 if(JSON.parse(localStorage.getItem("productosEnStorage"))){
     cantidadProductos = JSON.parse(localStorage.getItem("productosEnStorage")).length;
 }
@@ -219,6 +221,7 @@ function menuUsuario(){
 function mostrarUsuario(){
     usuarioLogueado=JSON.parse(sessionStorage.getItem("usuarioLogueado")) || [];
     if(usuarioLogueado.length>0){
+        expireSession();
         logueo.style.display="none";
         usuarioIn.style.display="flex"
         usuarioIn.innerText=usuarioLogueado[0].nombre[0].toUpperCase();
@@ -244,11 +247,13 @@ function loguearse(){
             sessionStorage.setItem("usuarioLogueado", JSON.stringify(usuarioLogueado));
             infoLogueo.style.color="#007e00"; 
             infoLogueo.innerHTML="Usuario logueado con exito";
-            nombreLogueo.style.border="1px solid #007e00"
-            claveLogueo.style.border="1px solid #007e00"
+            nombreLogueo.style.border="1px solid #007e00";
+            claveLogueo.style.border="1px solid #007e00";
             setTimeout(()=>{    
                 renderCarrito();
                 mostrarUsuario();
+                timeToExpire=60;
+                timer = setInterval (expireSession, 1000);
                 nombreLogueo.value="";
                 claveLogueo.value="";
                 infoLogueo.innerHTML="";
@@ -272,10 +277,29 @@ function logOut(){
     usuarioIn.innerText="";
     car.classList.add("noShow");
     contenidoMenuUsuario.style.display="none";
-   
     renderCarrito();
+    clearInterval(timer);
+    timeToExpire=60;
 }
 
+
+//expirar sesion despues de un tiempo de inactividad: 60 segundos
+
+function expireSession(){
+    document.onclick = (()=>timeToExpire=60);
+    document.onmousemove = (()=>timeToExpire=60);
+    document.onscroll = (()=>timeToExpire=60);
+        if (timeToExpire>0){
+            timeToExpire--;
+        } 
+        if (timeToExpire==0){
+            clearInterval(timer);
+            modal.style.display="flex";
+            modal.innerText="La sesión ha expirado. Por favor, volvé a ingresar";
+            setTimeout(()=>{modal.style.display="none";  logOut();}, 2500);
+        }
+    
+}
 
 //crear usuario
 function register(){
