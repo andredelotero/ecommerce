@@ -7,6 +7,7 @@ let carritoEnStorage = JSON.parse(localStorage.getItem("productosEnStorage")) ||
 let cantidadProductos = 0;
 let timeToExpire=60;
 let timer=0;
+let buscarClave;
 if(JSON.parse(localStorage.getItem("productosEnStorage"))){
     cantidadProductos = JSON.parse(localStorage.getItem("productosEnStorage")).length;
 }
@@ -225,7 +226,13 @@ function mostrarUsuario(){
         logueo.style.display="none";
         usuarioIn.style.display="flex"
         usuarioIn.innerText=usuarioLogueado[0].nombre[0].toUpperCase();
-        usuarioIn.addEventListener("click", menuUsuario)    
+        usuarioIn.addEventListener("click", menuUsuario)  ;
+        
+        //INICIO JQUERY
+        $(() => {
+        $( "#bienvenidaLogueado" ).html( `<h5>Hola ${usuarioLogueado[0].nombre}</h5><br>`);
+        });
+        //FIN JQUERY
     }
 }
 
@@ -241,7 +248,9 @@ function loguearse(){
     }
     else{
         let buscarUsuario = usuariosArr.findIndex((el)=>el.nombre==nombreLogueo.value);
-        let buscarClave = usuariosArr[buscarUsuario].clave == claveLogueo.value;
+        if (buscarUsuario>=0){
+        buscarClave = usuariosArr[buscarUsuario].clave == claveLogueo.value;
+        }
         if (buscarClave){
             usuarioLogueado.push (usuariosArr[buscarUsuario]);
             sessionStorage.setItem("usuarioLogueado", JSON.stringify(usuarioLogueado));
@@ -262,7 +271,7 @@ function loguearse(){
                 claveLogueo.style.border="1px solid #666"
             },2000);  
         }
-        else{
+        else if (!buscarUsuario<0 || !buscarClave){
             infoLogueo.style.color="#ff0000";
             infoLogueo.innerHTML="Usuario inexistente o clave incorrecta";
         }
@@ -388,11 +397,13 @@ function verificar(){
     }
 }
 
-cerrarSesion.addEventListener("click", logOut);
+//evento con JQUERY
+$(".cerrarSesion").click(logOut);
+//FIN JQUERY
+
 botonLogueo.addEventListener("click", loguearse);
 botonRegistro.addEventListener("click", register);
 botonConfirmar.addEventListener("click", verificar);
-
 
 
 //inicializar
