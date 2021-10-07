@@ -401,6 +401,33 @@ function verificar(){
 $(".cerrarSesion").click(logOut);
 //FIN JQUERY
 
+
+
+//clase 13: animaciones concatenadas
+const animateDom = (id)=>{
+    $(id).html('<p>envianos un e-mail a info@test.com</p><br><br><button id="cerrarModal" class="ctaJquerry">cerrar</button>');
+
+    $(id).slideDown(1000);
+    $(id).animate({height:'350px',
+                    width:'400px',
+                    "font-size":"25px"
+                    },
+                    2000,
+                    ()=>{$(id).css({'background-color':'white',
+                'color':'green'}); 
+                        $("#cerrarModal").fadeIn(1000)}
+                    
+                    )
+    $("#cerrarModal").click(()=>{$("#modal").slideUp(1000)}) 
+}
+
+$(() => {
+$('.cta').css({"cursor":"pointer"});
+$('.cta').click(()=>{animateDom("#modal")});
+});
+//fin clase 13
+
+
 botonLogueo.addEventListener("click", loguearse);
 botonRegistro.addEventListener("click", register);
 botonConfirmar.addEventListener("click", verificar);

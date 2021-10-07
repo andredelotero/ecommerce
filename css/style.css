@@ -881,6 +881,19 @@ footer {
   color: #000;
 }
 
+.ctaJquerry {
+  padding: 1rem 2rem;
+  cursor: pointer;
+  display: none;
+}
+
+.ctaJquerry:hover {
+  -webkit-transition: all 250ms linear;
+  transition: all 250ms linear;
+  -webkit-transform: translateX(4px);
+          transform: translateX(4px);
+}
+
 @media only screen and (min-width: 55rem) {
   header .info {
     margin: 2rem auto;
