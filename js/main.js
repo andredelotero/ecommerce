@@ -413,9 +413,10 @@ const animateDom = (id)=>{
                     "font-size":"25px"
                     },
                     2000,
-                    ()=>{$(id).css({'background-color':'white',
-                'color':'green'}); 
-                        $("#cerrarModal").fadeIn(1000)}
+                    ()=>{
+                            $(id).css({'background-color':'white','color':'green'}); 
+                            $("#cerrarModal").fadeIn(1000)
+                        }
                     
                     )
     $("#cerrarModal").click(()=>{$("#modal").slideUp(1000)}) 
