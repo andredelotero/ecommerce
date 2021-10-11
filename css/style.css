@@ -23,7 +23,7 @@ nav {
   display: flex;
   position: fixed;
   top: 0;
-  background-color: #7463fa;
+  background-color: #6425dc;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -527,8 +527,8 @@ nav .menu .containerLinks a:visited:hover {
 header {
   padding: 4rem 0 6rem 0;
   width: 100%;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#7463fa), to(#6425dc));
-  background-image: linear-gradient(to bottom, #7463fa, #6425dc);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#6425dc), to(#3c04a5));
+  background-image: linear-gradient(to bottom, #6425dc, #3c04a5);
   -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);
           clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);
 }
@@ -789,7 +789,7 @@ main .servicios article .precio::before {
 
 main .servicios article .comprar {
   width: 100%;
-  background: #6425dc;
+  background: #3c04a5;
   color: #fff;
   padding: 1rem;
   margin: 0 auto;
