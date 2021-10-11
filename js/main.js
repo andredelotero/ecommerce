@@ -65,7 +65,7 @@ function crearCardServicio(){
     for (const serv of serviciosArr){
         let articulo = document.createElement("article");
         articulo.innerHTML=
-            `<img src="${serv.imagen}"></img>
+            `<img src="${serv.imagen}" alt="${serv.nombre}"></img>
             <p class="titulo">${serv.nombre}</p>
             <p class="descripcion">${serv.descripcion}</p>
             <p class="precio">${serv.precio}</p>
