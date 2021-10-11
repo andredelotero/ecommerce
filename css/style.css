@@ -40,6 +40,8 @@ nav {
 }
 
 nav .logo {
+  color: #fff;
+  text-decoration: none;
   -webkit-box-ordinal-group: 2;
       -ms-flex-order: 1;
           order: 1;
@@ -419,6 +421,7 @@ nav .input {
   top: 5px;
   opacity: 0;
   z-index: 2;
+  cursor: pointer;
 }
 
 nav .input:checked ~ .burguer .linea1 {
@@ -493,7 +496,7 @@ nav .menu {
   transition: all 200ms linear;
 }
 
-nav .menu ul {
+nav .menu .containerLinks {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -505,15 +508,18 @@ nav .menu ul {
   background: #fff;
 }
 
-nav .menu ul li {
+nav .menu .containerLinks a,
+nav .menu .containerLinks a:visited {
   color: #444;
   display: inline-block;
   padding: 1rem 2.5rem;
-  list-style: none;
   height: 64px;
+  text-decoration: none;
 }
 
-nav .menu ul li:hover {
+nav .menu .containerLinks a:hover,
+nav .menu .containerLinks a:visited:hover {
+  height: 64px;
   background: #695ae0;
   color: #fff;
 }
@@ -956,17 +962,19 @@ footer {
     width: -moz-fit-content;
     width: fit-content;
   }
-  nav .menu ul {
+  nav .menu .containerLinks {
     background-color: #7463fa;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
         -ms-flex-direction: row;
             flex-direction: row;
   }
-  nav .menu ul li {
+  nav .menu .containerLinks a,
+  nav .menu .containerLinks a:visited {
     color: #fff;
   }
-  nav .menu ul li:hover {
+  nav .menu .containerLinks a a:hover,
+  nav .menu .containerLinks a:visited a:hover {
     background: #695ae0;
   }
   main .soluciones .cuadros__soluciones {
