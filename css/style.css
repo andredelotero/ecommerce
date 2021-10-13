@@ -136,7 +136,8 @@ nav .cart__contenido .wraper__titles .imagen,
 nav .cart__contenido .wraper__titles .nombre,
 nav .cart__contenido .wraper__titles .precio,
 nav .cart__contenido .wraper__titles .cantidad,
-nav .cart__contenido .wraper__titles .total {
+nav .cart__contenido .wraper__titles .total,
+nav .cart__contenido .wraper__titles .negrita {
   font-weight: 600;
   margin: 1rem;
   width: 20%;
@@ -509,7 +510,8 @@ nav .menu .containerLinks {
 }
 
 nav .menu .containerLinks a,
-nav .menu .containerLinks a:visited {
+nav .menu .containerLinks a:visited,
+nav .menu .containerLinks p {
   color: #000;
   display: inline-block;
   padding: 1rem 2.5rem;
@@ -518,10 +520,15 @@ nav .menu .containerLinks a:visited {
 }
 
 nav .menu .containerLinks a:hover,
-nav .menu .containerLinks a:visited:hover {
+nav .menu .containerLinks a:visited:hover,
+nav .menu .containerLinks p:hover {
   height: 64px;
   background: #695ae0;
   color: #fff;
+}
+
+nav .menu p {
+  cursor: pointer;
 }
 
 header {
@@ -787,6 +794,18 @@ main .servicios article .precio::before {
   margin-right: 0.5rem;
 }
 
+main .servicios article .precio--dolar {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 1.5rem 0 0;
+}
+
+main .servicios article .precio--dolar::before {
+  content: "Valor en dolares:";
+  font-size: 1rem;
+}
+
 main .servicios article .comprar {
   width: 100%;
   background: #3c04a5;
@@ -970,11 +989,13 @@ footer {
             flex-direction: row;
   }
   nav .menu .containerLinks a,
-  nav .menu .containerLinks a:visited {
+  nav .menu .containerLinks a:visited,
+  nav .menu .containerLinks p {
     color: #fff;
   }
   nav .menu .containerLinks a a:hover,
-  nav .menu .containerLinks a:visited a:hover {
+  nav .menu .containerLinks a:visited a:hover,
+  nav .menu .containerLinks p a:hover {
     background: #695ae0;
   }
   main .soluciones .cuadros__soluciones {

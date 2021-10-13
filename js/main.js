@@ -68,7 +68,7 @@ function crearCardServicio(){
             `<img src="${serv.imagen}" alt="${serv.nombre}"></img>
             <p class="titulo">${serv.nombre}</p>
             <p class="descripcion">${serv.descripcion}</p>
-            <p class="precio">${serv.precio}</p>
+            <p class="precio" id="valorServicio">${serv.precio}</p>
             <p class="comprar" onclick="agregarAlCarrito(${serv.id})">agregar al carrito</p>`
             padre.appendChild(articulo);
             
