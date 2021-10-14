@@ -144,9 +144,9 @@ nav .cart__contenido .wraper__titles .parcial {
 }
 
 nav .cart__contenido .wraper__cta {
-  width: 80%;
+  width: 100%;
   padding: 2rem;
-  margin: 2rem auto;
+  margin-top: 2rem;
   border-top: 2px solid #888;
   display: none;
   -webkit-box-align: center;
@@ -162,6 +162,7 @@ nav .cart__contenido .wraper__cta .cta__clear {
   padding: 1rem 2rem;
   margin-right: 2rem;
   cursor: pointer;
+  border-radius: 4px;
 }
 
 nav .cart__contenido .wraper__cta .cta__buy {
@@ -221,7 +222,7 @@ nav .cart__contenido .wraper__content article .cantidad {
 
 nav .cart__contenido .wraper__content article .accionesServicios {
   width: 100%;
-  margin: 1rem;
+  margin: 1.5rem 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -254,6 +255,22 @@ nav .cart__contenido .wraper__content article .accionesServicios .restar {
 
 nav .cart__contenido .wraper__content article .accionesServicios .eliminar {
   background-color: #ff0000;
+}
+
+nav .cart__contenido .wraper__content article .totales {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+nav .cart__contenido .wraper__content article .totales p {
+  width: 100%;
+  margin-top: 1rem;
 }
 
 nav .animSacudon {
@@ -818,14 +835,14 @@ main .servicios article .descripcion {
   margin: 1rem auto;
 }
 
-main .servicios article .precio {
+main .servicios article .precioPesos {
   text-align: center;
   font-size: 1.2rem;
   font-weight: 600;
   margin: 1.5rem 0;
 }
 
-main .servicios article .precio::before {
+main .servicios article .precioPesos::before {
   content: "Valor:";
   font-size: 1rem;
   margin-right: 0.5rem;
@@ -865,6 +882,7 @@ main .servicios article .comprar {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+  border-radius: 4px;
 }
 
 main .servicios article .comprar:hover {

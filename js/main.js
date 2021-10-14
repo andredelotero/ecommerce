@@ -5,7 +5,7 @@ let usuarioLogueado=JSON.parse(sessionStorage.getItem("usuarioLogueado")) || [];
 let serviciosArr=JSON.parse(localStorage.getItem("arrayProductos")) || [];
 let carritoEnStorage = JSON.parse(localStorage.getItem("productosEnStorage")) || []; 
 let cantidadProductos = 0;
-let timeToExpire=36000;//modificar!!
+let timeToExpire=10;
 let timer=0;
 let buscarClave;
 if(JSON.parse(localStorage.getItem("productosEnStorage"))){
@@ -68,7 +68,7 @@ function crearCardServicio(){
             `<img src="${serv.imagen}" alt="${serv.nombre}"></img>
             <p class="titulo">${serv.nombre}</p>
             <p class="descripcion">${serv.descripcion}</p>
-            <p class="precio" id="valorServicio">${serv.precio}</p>
+            <p class="precioPesos" id="valorServicio">${serv.precio}</p>
             <p class="comprar" onclick="agregarAlCarrito(${serv.id})">agregar al carrito</p>`
             padre.appendChild(articulo);
             
@@ -140,10 +140,6 @@ function restar(idARestar){
     renderCarrito();
 }
 
-
-
-
-
 //renderizar el contenido del carrito
 function renderCarrito(){
     let valorTotal=0;
@@ -187,9 +183,10 @@ function renderCarrito(){
     let artTotal = document.createElement("article");
     artTotal.innerHTML=
     `
-   
+    <div class="totales">
     <p >Cantidad de productos: ${cantidadProductos}</p>
     <p >Valor total: ${valorTotal}</p>
+    </div>
     `
     padreCarrito.appendChild(artTotal);
     
@@ -311,7 +308,7 @@ function loguearse(){
             setTimeout(()=>{    
                 renderCarrito();
                 mostrarUsuario();
-                timeToExpire=60;
+                timeToExpire=10;
                 timer = setInterval (expireSession, 1000);
                 nombreLogueo.value="";
                 claveLogueo.value="";
@@ -338,16 +335,16 @@ function logOut(){
     contenidoMenuUsuario.style.display="none";
     renderCarrito();
     clearInterval(timer);
-    timeToExpire=60;
+    timeToExpire=10;
 }
 
 
 //expirar sesion despues de un tiempo de inactividad: 60 segundos
 
 function expireSession(){
-    document.onclick = (()=>timeToExpire=60);
-    document.onmousemove = (()=>timeToExpire=60);
-    document.onscroll = (()=>timeToExpire=60);
+    document.onclick = (()=>timeToExpire=10);
+    document.onmousemove = (()=>timeToExpire=10);
+    document.onscroll = (()=>timeToExpire=10);
         if (timeToExpire>0){
             timeToExpire--;
         } 

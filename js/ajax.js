@@ -13,7 +13,7 @@ $("#dolarizar").click( function() {
             let misDatos = respuesta;            
             valorDolar=parseInt(misDatos[0].casa.venta);
             //tome el primer valor del array, donde se encuentra el valor del dolar oficial, precio de venta. 
-             articulosEnPesos = document.querySelectorAll(".precio");
+             articulosEnPesos = document.querySelectorAll(".precioPesos");
 
              for ( const aDolarizar of articulosEnPesos){
               valorEnPesos=parseInt(aDolarizar.innerText);
