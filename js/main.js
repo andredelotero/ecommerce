@@ -5,7 +5,7 @@ let usuarioLogueado=JSON.parse(sessionStorage.getItem("usuarioLogueado")) || [];
 let serviciosArr=JSON.parse(localStorage.getItem("arrayProductos")) || [];
 let carritoEnStorage = JSON.parse(localStorage.getItem("productosEnStorage")) || []; 
 let cantidadProductos = 0;
-let timeToExpire=60;
+let timeToExpire=36000;//modificar!!
 let timer=0;
 let buscarClave;
 if(JSON.parse(localStorage.getItem("productosEnStorage"))){
@@ -100,6 +100,50 @@ function eliminar(idABorrar){
     renderCarrito();
 }
 
+//agrega mas cantidad del producto ya agregado al carrito
+function agregar(idAAgregar){
+    cantidadProductos = JSON.parse(localStorage.getItem("cantidadProductosComprados"));
+    carritoEnStorage = JSON.parse(localStorage.getItem("productosEnStorage"));
+    serviciosArr=JSON.parse(localStorage.getItem("arrayProductos"));
+    let aGregar = carritoEnStorage.findIndex((el)=>el.id==idAAgregar);
+    let agregarEnArray = serviciosArr.findIndex((el)=>el.id==idAAgregar);
+    cantidadProductos ++;
+    carritoEnStorage[aGregar].cantidadComprada ++;
+    serviciosArr[agregarEnArray].cantidadComprada ++;
+    localStorage.setItem("productosEnStorage", JSON.stringify(carritoEnStorage));
+    localStorage.setItem("arrayProductos", JSON.stringify(serviciosArr));
+    localStorage.setItem("cantidadProductosComprados", JSON.stringify(cantidadProductos));
+    car.innerHTML = cantidadProductos;
+    renderCarrito();
+}
+
+//resta  cantidad del producto ya agregado al carrito
+function restar(idARestar){
+    cantidadProductos = JSON.parse(localStorage.getItem("cantidadProductosComprados"));
+    carritoEnStorage = JSON.parse(localStorage.getItem("productosEnStorage"));
+    serviciosArr=JSON.parse(localStorage.getItem("arrayProductos"));
+    let aRestar = carritoEnStorage.findIndex((el)=>el.id==idARestar);
+    let restarEnArray = serviciosArr.findIndex((el)=>el.id==idARestar);
+    if (carritoEnStorage[aRestar].cantidadComprada >1){
+        cantidadProductos --;
+        carritoEnStorage[aRestar].cantidadComprada --;
+        serviciosArr[restarEnArray].cantidadComprada --;
+    }
+    else
+    if (carritoEnStorage[aRestar].cantidadComprada ==1){
+        eliminar(idARestar)
+    }
+    localStorage.setItem("productosEnStorage", JSON.stringify(carritoEnStorage));
+    localStorage.setItem("arrayProductos", JSON.stringify(serviciosArr));
+    localStorage.setItem("cantidadProductosComprados", JSON.stringify(cantidadProductos));
+    car.innerHTML = cantidadProductos;
+    renderCarrito();
+}
+
+
+
+
+
 //renderizar el contenido del carrito
 function renderCarrito(){
     let valorTotal=0;
@@ -120,6 +164,7 @@ function renderCarrito(){
     for (let i of carritoEnStorage){
         
         let art = document.createElement("article");
+        
         let precioParcial = i.precio * i.cantidadComprada;
         valorTotal+=precioParcial;
         art.innerHTML =
@@ -128,8 +173,13 @@ function renderCarrito(){
         <p class="nombre">${i.nombre}</p>
         <p class="precio">${i.precio}</p>
         <p class="cantidad">${i.cantidadComprada}</p>
-        <p>${precioParcial}</p>
+        <p >${precioParcial}</p>
+        <div class="accionesServicios">
+        
+        <p class="agregar" onclick="agregar(${i.id})">+</p>
+        <p class="restar" onclick="restar(${i.id})">-</p>
         <p class="eliminar" onclick="eliminar(${i.id})">X</p>
+        </div>
         `
         padreCarrito.appendChild(art);
        
@@ -138,8 +188,8 @@ function renderCarrito(){
     artTotal.innerHTML=
     `
    
-    <p class="cantidad">Cantidad de productos: ${cantidadProductos}</p>
-    <p>Valor total: ${valorTotal}</p>
+    <p >Cantidad de productos: ${cantidadProductos}</p>
+    <p >Valor total: ${valorTotal}</p>
     `
     padreCarrito.appendChild(artTotal);
     

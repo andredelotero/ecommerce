@@ -107,7 +107,7 @@ nav .cart__contenido {
   max-width: 850px;
   overflow-y: auto;
   max-height: 50vh;
-  padding: 2rem;
+  padding: 1rem;
   background: #e9e9e9;
   border: 1px solid #444;
   color: #000;
@@ -121,27 +121,26 @@ nav .cart__contenido {
 
 nav .cart__contenido .wraper__titles {
   width: 100%;
-  padding: 0 2rem;
-  margin: 0rem auto;
   border-bottom: 2px solid #888;
   display: none;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
 }
 
 nav .cart__contenido .wraper__titles .imagen,
 nav .cart__contenido .wraper__titles .nombre,
 nav .cart__contenido .wraper__titles .precio,
 nav .cart__contenido .wraper__titles .cantidad,
-nav .cart__contenido .wraper__titles .total,
+nav .cart__contenido .wraper__titles .parcial,
 nav .cart__contenido .wraper__titles .negrita {
-  font-weight: 600;
-  margin: 1rem;
-  width: 20%;
-  max-width: 100px;
+  font-weight: 400;
+  width: 5rem;
+  display: inline-block;
+}
+
+nav .cart__contenido .wraper__titles .parcial {
+  margin-left: 1rem;
 }
 
 nav .cart__contenido .wraper__cta {
@@ -184,40 +183,77 @@ nav .cart__contenido .wraper__content article {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 1.5rem 0;
   padding: 1rem;
+  background: #fff;
 }
 
 nav .cart__contenido .wraper__content article img,
 nav .cart__contenido .wraper__content article .imagen {
-  width: 70px;
-  height: 70px;
-  margin-right: 2rem;
+  width: 40px;
+  height: 40px;
+  margin-right: 1rem;
 }
 
 nav .cart__contenido .wraper__content article .nombre {
   font-weight: 400;
   font-size: 0.8rem;
-  margin-right: 2rem;
+  margin-right: 1rem;
+  width: 4rem;
 }
 
 nav .cart__contenido .wraper__content article .precio {
   font-size: 0.8rem;
   font-weight: 600;
-  margin-right: 2rem;
+  margin-right: 1rem;
+  width: 3rem;
 }
 
 nav .cart__contenido .wraper__content article .cantidad {
-  margin-right: 2rem;
+  margin-right: 0rem;
+  width: 2rem;
 }
 
-nav .cart__contenido .wraper__content article .eliminar {
-  background-color: #ff0000;
+nav .cart__contenido .wraper__content article .accionesServicios {
+  width: 100%;
+  margin: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+nav .cart__contenido .wraper__content article .accionesServicios .agregar,
+nav .cart__contenido .wraper__content article .accionesServicios .restar,
+nav .cart__contenido .wraper__content article .accionesServicios .eliminar {
   border-radius: 50%;
   color: #fff;
   padding: 0.1rem 0.5rem;
+  margin-left: 1rem;
   cursor: pointer;
+  width: 1.75rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: darkgreen;
+}
+
+nav .cart__contenido .wraper__content article .accionesServicios .restar {
+  background-color: blue;
+}
+
+nav .cart__contenido .wraper__content article .accionesServicios .eliminar {
+  background-color: #ff0000;
 }
 
 nav .animSacudon {
@@ -316,6 +352,7 @@ nav .usuarios .logueo {
       -ms-flex-direction: column;
           flex-direction: column;
   position: absolute;
+  overflow-y: auto;
   top: 85px;
   right: 0;
   padding: 2rem;
@@ -955,6 +992,14 @@ footer {
     -webkit-box-ordinal-group: 7;
         -ms-flex-order: 6;
             order: 6;
+  }
+  nav .cart__contenido .wraper__titles .imagen,
+  nav .cart__contenido .wraper__titles .nombre,
+  nav .cart__contenido .wraper__titles .precio,
+  nav .cart__contenido .wraper__titles .cantidad,
+  nav .cart__contenido .wraper__titles .parcial,
+  nav .cart__contenido .wraper__titles .negrita {
+    width: 20%;
   }
   nav input {
     -webkit-box-ordinal-group: 3;
