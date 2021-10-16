@@ -363,10 +363,13 @@ function register(){
     botonLogueo.style.display="none";
     botonRegistro.style.display="none";
     botonConfirmar.style.display="inline-block";
+    botonCancelar.style.display="inline-block";
+    infoLogueo.innerHTML="";
     }
 
 //validacion del formulario de crear usuario
 function verificar(){
+    
     let errorEnNombre, errorEnClave, errorEnRepetir, errorComparar = false;
     usuariosArr=JSON.parse(localStorage.getItem("arrayUsuarios")) || [];
     if (nombreLogueo.value.length<2){
@@ -444,6 +447,23 @@ function verificar(){
     }
 }
 
+function cancelarRegistro(){
+    repetirClave.classList.add("noShow");  
+    botonConfirmar.style.display="none";
+    botonLogueo.style.display="inline-block";
+    botonRegistro.style.display="inline-block";
+    botonCancelar.style.display="none";
+    infoLogueo.style.color="";
+    infoLogueo.innerHTML="";
+    errorNombre.innerHTML="";
+    errorClave.innerText="";
+    errorRepetirClave.innerText="";
+    nombreLogueo.style.border="1px solid #666"
+    claveLogueo.style.border="1px solid #666"
+    claveLogueoRepetir.style.border="1px solid #666"
+}
+
+
 //evento con JQUERY
 $(".cerrarSesion").click(logOut);
 //FIN JQUERY
@@ -457,7 +477,7 @@ const animateDom = (id)=>{
     $(id).slideDown(1000);
     $(id).animate({height:'350px',
                     width:'400px',
-                    "font-size":"25px"
+                    "font-size":"28px"
                     },
                     2000,
                     ()=>{
@@ -466,19 +486,38 @@ const animateDom = (id)=>{
                         }
                     
                     )
-    $("#cerrarModal").click(()=>{$("#modal").slideUp(1000)}) 
+    $("#cerrarModal").click(()=>{
+        $("#modal").slideUp(1000);
+        $("#modal").html('');
+        $("#modal").css({'background-color':'#e9e9e9','color':'#000', 'height':'100px', 'width':'350px', 'font-size':'16px'}); 
+    }) 
 }
 
 $(() => {
 $('.cta').css({"cursor":"pointer"});
 $('.cta').click(()=>{animateDom("#modal")});
 });
+
+
+
 //fin clase 13
 
+function cerrarCompra(){
+    modalCompra.style.display="none";
+}
+
+function finalizarCompra(){
+    cart__contenido.style.display="none";
+    modalCompra.style.display="flex";
+}
 
 botonLogueo.addEventListener("click", loguearse);
 botonRegistro.addEventListener("click", register);
 botonConfirmar.addEventListener("click", verificar);
+botonCancelar.addEventListener("click", cancelarRegistro);
+botonCerrarCompraExitosa.addEventListener("click", cerrarCompra);
+comprarCarrito.addEventListener("click", finalizarCompra)
+
 
 
 //inicializar

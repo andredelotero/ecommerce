@@ -417,9 +417,11 @@ nav .usuarios .logueo form .botones {
 
 nav .usuarios .logueo form .botones .boton--logueo,
 nav .usuarios .logueo form .botones .boton--registro,
-nav .usuarios .logueo form .botones .boton--confirmar {
+nav .usuarios .logueo form .botones .boton--confirmar,
+nav .usuarios .logueo form .botones .boton--cancelar {
   display: inline-block;
   padding: 1rem 2rem;
+  border-radius: 4px;
   font-weight: 600;
   cursor: pointer;
   -webkit-transition: all 200ms linear;
@@ -441,14 +443,20 @@ nav .usuarios .logueo form .botones .boton--confirmar {
   display: none;
 }
 
-nav .usuarios .logueo form .botones .boton--registro {
+nav .usuarios .logueo form .botones .boton--registro,
+nav .usuarios .logueo form .botones .boton--cancelar {
   margin-left: 2rem;
   color: #000;
 }
 
-nav .usuarios .logueo form .botones .boton--registro:hover {
+nav .usuarios .logueo form .botones .boton--registro:hover,
+nav .usuarios .logueo form .botones .boton--cancelar:hover {
   -webkit-transform: translateX(2px);
           transform: translateX(2px);
+}
+
+nav .usuarios .logueo form .botones .boton--cancelar {
+  display: none;
 }
 
 nav .usuarios .logueo .infoLogueo {
@@ -470,7 +478,7 @@ nav .input {
       -ms-flex-order: 5;
           order: 5;
   position: absolute;
-  width: 55px;
+  width: 25px;
   right: 2rem;
   height: 55px;
   top: 5px;
@@ -568,7 +576,7 @@ nav .menu .containerLinks a:visited,
 nav .menu .containerLinks p {
   color: #000;
   display: inline-block;
-  padding: 1rem 2.5rem;
+  padding: 1rem 1.8rem;
   height: 64px;
   text-decoration: none;
 }
@@ -673,6 +681,7 @@ header .info .titleCta .ctas .cta {
   transition: transform 200ms linear;
   transition: transform 200ms linear, -webkit-transform 200ms linear;
   letter-spacing: 1px;
+  border-radius: 4px;
 }
 
 header .info .titleCta .ctas .cta:hover {
@@ -934,6 +943,7 @@ footer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  text-align: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -972,6 +982,181 @@ footer {
   transition: all 250ms linear;
   -webkit-transform: translateX(4px);
           transform: translateX(4px);
+}
+
+@-webkit-keyframes circuloCompra {
+  0% {
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+    opacity: 0;
+    border-left: 2px solid #fff;
+  }
+  30% {
+    border-left: 2px solid #fff;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+    border-left: 2px solid #007e00;
+  }
+}
+
+@keyframes circuloCompra {
+  0% {
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+    opacity: 0;
+    border-left: 2px solid #fff;
+  }
+  30% {
+    border-left: 2px solid #fff;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+    border-left: 2px solid #007e00;
+  }
+}
+
+@-webkit-keyframes tilde {
+  0% {
+    opacity: 0;
+  }
+  85% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes tilde {
+  0% {
+    opacity: 0;
+  }
+  85% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+#containerModalCompra {
+  position: fixed;
+  top: 65px;
+  left: 0;
+  right: 0;
+  display: none;
+}
+
+#containerModalCompra .modalCompra {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 100%;
+  margin: 1rem auto;
+  max-width: 450px;
+  background: #fff;
+  right: 0;
+  padding: 2rem;
+  border: 0px solid #007e00;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 0 4px #007e00;
+          box-shadow: 0 0 4px #007e00;
+}
+
+#containerModalCompra .modalCompra .containerCirculoTilde {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 150px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: relative;
+}
+
+#containerModalCompra .modalCompra .containerCirculoTilde .circulo {
+  border: 2px solid #007e00;
+  position: absolute;
+  top: 0;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  -webkit-animation: circuloCompra 2s ease-out;
+          animation: circuloCompra 2s ease-out;
+}
+
+#containerModalCompra .modalCompra .containerCirculoTilde .tilde {
+  width: 40px;
+  height: 3px;
+  position: absolute;
+  opacity: 1;
+  top: 80px;
+  right: 195px;
+  background: #007e00;
+  -webkit-transform: rotate(25deg);
+          transform: rotate(25deg);
+  -webkit-animation: tilde 2000ms ease-out;
+          animation: tilde 2000ms ease-out;
+}
+
+#containerModalCompra .modalCompra .containerCirculoTilde .tilde::after {
+  content: "";
+  position: absolute;
+  top: -31px;
+  left: 19px;
+  -webkit-transform: rotate(-65deg);
+          transform: rotate(-65deg);
+  width: 70px;
+  height: 3px;
+  background: #007e00;
+}
+
+#containerModalCompra .modalCompra .compraExitosa {
+  text-align: center;
+  margin-top: 2rem;
+  font-weight: 600;
+  -webkit-animation: tilde 2000ms ease-out;
+          animation: tilde 2000ms ease-out;
+}
+
+#containerModalCompra .modalCompra #cerrarCompraExitosa {
+  -webkit-animation: tilde 2500ms ease-out;
+          animation: tilde 2500ms ease-out;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  border: 1px solid #000;
+  margin: 2rem auto;
+  border-radius: 4px;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  -webkit-transition: all 200ms;
+  transition: all 200ms;
+}
+
+#containerModalCompra .modalCompra #cerrarCompraExitosa:hover {
+  background: #000;
+  color: #fff;
 }
 
 @media only screen and (min-width: 55rem) {

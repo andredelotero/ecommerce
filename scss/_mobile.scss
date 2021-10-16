@@ -297,9 +297,11 @@ nav {
           margin-top: 3rem;
           .boton--logueo,
           .boton--registro,
-          .boton--confirmar {
+          .boton--confirmar,
+          .boton--cancelar {
             display: inline-block;
             padding: 1rem 2rem;
+            border-radius: 4px;
             font-weight: 600;
             cursor: pointer;
             transition: all 200ms linear;
@@ -316,12 +318,16 @@ nav {
             background: #007e00;
             display: none;
           }
-          .boton--registro {
+          .boton--registro,
+          .boton--cancelar {
             margin-left: 2rem;
             color: #000;
             &:hover {
               transform: translateX(2px);
             }
+          }
+          .boton--cancelar {
+            display: none;
           }
         }
       }
@@ -337,7 +343,7 @@ nav {
   .input {
     order: 5;
     position: absolute;
-    width: 55px;
+    width: 25px;
     right: 2rem;
     height: 55px;
     top: 5px;
@@ -405,7 +411,7 @@ nav {
       p {
         color: #000;
         display: inline-block;
-        padding: 1rem 2.5rem;
+        padding: 1rem 1.8rem;
         height: 64px;
         text-decoration: none;
         &:hover {
@@ -470,6 +476,7 @@ header {
           border: 1px solid #fff;
           transition: transform 200ms linear;
           letter-spacing: 1px;
+          border-radius: 4px;
           &:hover {
             transform: scale(1.02);
           }
@@ -657,6 +664,7 @@ footer {
   background: #000;
   padding: 3rem 1rem;
   display: flex;
+  text-align: center;
   align-items: center;
   justify-content: center;
   color: #fff;
@@ -684,5 +692,115 @@ footer {
   &:hover {
     transition: all 250ms linear;
     transform: translateX(4px);
+  }
+}
+
+@keyframes circuloCompra {
+  0% {
+    transform: rotate(0);
+    opacity: 0;
+    border-left: 2px solid #fff;
+  }
+  30% {
+    border-left: 2px solid #fff;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(360deg);
+    border-left: 2px solid #007e00;
+  }
+}
+
+@keyframes tilde {
+  0% {
+    opacity: 0;
+  }
+  85% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+#containerModalCompra {
+  position: fixed;
+  top: 65px;
+  left: 0;
+  right: 0;
+  display: none;
+  .modalCompra {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 1rem auto;
+    max-width: 450px;
+    background: #fff;
+    right: 0;
+    padding: 2rem;
+    border: 0px solid #007e00;
+    border-radius: 4px;
+    box-shadow: 0 0 4px #007e00;
+    .containerCirculoTilde {
+      display: flex;
+      height: 150px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      .circulo {
+        border: 2px solid #007e00;
+        position: absolute;
+        top: 0;
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        animation: circuloCompra 2s ease-out;
+      }
+      .tilde {
+        width: 40px;
+        height: 3px;
+        position: absolute;
+        opacity: 1;
+        top: 80px;
+        right: 195px;
+        background: #007e00;
+        transform: rotate(25deg);
+        animation: tilde 2000ms ease-out;
+
+        &::after {
+          content: "";
+          position: absolute;
+          top: -31px;
+          left: 19px;
+          transform: rotate(-65deg);
+          width: 70px;
+          height: 3px;
+          background: #007e00;
+        }
+      }
+    }
+    .compraExitosa {
+      text-align: center;
+      margin-top: 2rem;
+      font-weight: 600;
+      animation: tilde 2000ms ease-out;
+    }
+    #cerrarCompraExitosa {
+      animation: tilde 2500ms ease-out;
+      width: fit-content;
+      border: 1px solid #000;
+      margin: 2rem auto;
+      border-radius: 4px;
+      padding: 1rem 2rem;
+      cursor: pointer;
+      transition: all 200ms;
+      &:hover {
+        background: #000;
+        color: #fff;
+      }
+    }
   }
 }

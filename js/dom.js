@@ -24,6 +24,11 @@ const infoLogueo = document.querySelector(".infoLogueo");
 const botonLogueo = document.querySelector(".boton--logueo");
 const botonRegistro = document.querySelector(".boton--registro");
 const botonConfirmar = document.querySelector(".boton--confirmar");
+const botonCancelar = document.querySelector(".boton--cancelar");
 const cerrarSesion = document.querySelector(".cerrarSesion");
+
+const modalCompra = document.querySelector("#containerModalCompra");
+const botonCerrarCompraExitosa = document.querySelector("#cerrarCompraExitosa");
+const comprarCarrito = document.querySelector(".cta__buy");
 
 const modal = document.querySelector("#modal");
