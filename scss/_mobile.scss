@@ -730,6 +730,8 @@ footer {
   top: 65px;
   left: 0;
   right: 0;
+  bottom: 0;
+  background: #080808c2;
   display: none;
   .modalCompra {
     display: flex;
@@ -737,6 +739,7 @@ footer {
     width: 100%;
     margin: 1rem auto;
     max-width: 450px;
+    height: fit-content;
     background: #fff;
     right: 0;
     padding: 2rem;
