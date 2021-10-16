@@ -766,6 +766,9 @@ footer {
       .circulo {
         border: 2px solid #007e00;
         position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         top: 0;
         width: 150px;
         height: 150px;
@@ -775,20 +778,17 @@ footer {
       .tilde {
         width: 40px;
         height: 3px;
-        position: absolute;
         opacity: 1;
-        top: 80px;
-        right: 195px;
         background: #007e00;
-        transform: rotate(25deg);
+        transform: translateX(-20px) translateY(5px) rotate(40deg);
         animation: tilde 2000ms ease-out;
 
         &::after {
           content: "";
           position: absolute;
-          top: -31px;
-          left: 19px;
-          transform: rotate(-65deg);
+          top: -34px;
+          left: 8px;
+          transform: rotate(-85deg);
           width: 70px;
           height: 3px;
           background: #007e00;

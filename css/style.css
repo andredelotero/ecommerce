@@ -1116,6 +1116,15 @@ footer {
 #containerModalCompra .modalCompra .containerCirculoTilde .circulo {
   border: 2px solid #007e00;
   position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   top: 0;
   width: 150px;
   height: 150px;
@@ -1127,13 +1136,10 @@ footer {
 #containerModalCompra .modalCompra .containerCirculoTilde .tilde {
   width: 40px;
   height: 3px;
-  position: absolute;
   opacity: 1;
-  top: 80px;
-  right: 195px;
   background: #007e00;
-  -webkit-transform: rotate(25deg);
-          transform: rotate(25deg);
+  -webkit-transform: translateX(-20px) translateY(5px) rotate(40deg);
+          transform: translateX(-20px) translateY(5px) rotate(40deg);
   -webkit-animation: tilde 2000ms ease-out;
           animation: tilde 2000ms ease-out;
 }
@@ -1141,10 +1147,10 @@ footer {
 #containerModalCompra .modalCompra .containerCirculoTilde .tilde::after {
   content: "";
   position: absolute;
-  top: -31px;
-  left: 19px;
-  -webkit-transform: rotate(-65deg);
-          transform: rotate(-65deg);
+  top: -34px;
+  left: 8px;
+  -webkit-transform: rotate(-85deg);
+          transform: rotate(-85deg);
   width: 70px;
   height: 3px;
   background: #007e00;
