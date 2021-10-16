@@ -442,6 +442,7 @@ function verificar(){
             nombreLogueo.style.border="1px solid #666"
             claveLogueo.style.border="1px solid #666"
             claveLogueoRepetir.style.border="1px solid #666"
+            botonCancelar.style.display="none";
             
         },2000);  
     }
