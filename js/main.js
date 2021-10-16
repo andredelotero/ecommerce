@@ -509,6 +509,7 @@ function cerrarCompra(){
 function finalizarCompra(){
     cart__contenido.style.display="none";
     modalCompra.style.display="flex";
+    vaciarCarrito();
 }
 
 botonLogueo.addEventListener("click", loguearse);
