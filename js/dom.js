@@ -8,7 +8,7 @@ const padreCarrito = document.querySelector(".wraper__content");
 
 //logueo y registro de usuarios
 const logueo = document.querySelector("#logueo");
-const logueoToggle = document.querySelector(".logueo");
+const logueoToggle = document.querySelector("#containerLogueo");
 
 const nombreLogueo = document.querySelector("#nombreLogueo");
 const claveLogueo = document.querySelector("#claveLogueo");

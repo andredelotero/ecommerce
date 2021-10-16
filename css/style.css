@@ -362,16 +362,30 @@ nav .usuarios .menuUser .cerrarSesion {
   cursor: pointer;
 }
 
-nav .usuarios .logueo {
+nav .usuarios #containerLogueo {
+  position: fixed;
+  top: 65px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #080808c2;
   display: none;
+  padding-top: 1rem;
+}
+
+nav .usuarios #containerLogueo .logueo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  position: absolute;
+  margin: 0 auto;
   overflow-y: auto;
-  top: 85px;
-  right: 0;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
   padding: 2rem;
   width: 100%;
   max-width: 450px;
@@ -380,23 +394,23 @@ nav .usuarios .logueo {
   color: #000;
 }
 
-nav .usuarios .logueo form {
+nav .usuarios #containerLogueo .logueo form {
   width: 100%;
 }
 
-nav .usuarios .logueo form div {
+nav .usuarios #containerLogueo .logueo form div {
   margin: 1rem auto;
 }
 
-nav .usuarios .logueo form div .noShow {
+nav .usuarios #containerLogueo .logueo form div .noShow {
   display: none;
 }
 
-nav .usuarios .logueo form label {
+nav .usuarios #containerLogueo .logueo form label {
   display: inline-block;
 }
 
-nav .usuarios .logueo form .error {
+nav .usuarios #containerLogueo .logueo form .error {
   color: #ff0000;
   font-size: 0.8rem;
   display: inline-block;
@@ -404,21 +418,21 @@ nav .usuarios .logueo form .error {
   margin-top: 0;
 }
 
-nav .usuarios .logueo form input {
+nav .usuarios #containerLogueo .logueo form input {
   display: block;
   padding: 1rem;
   border: 1px solid #666;
   width: 250px;
 }
 
-nav .usuarios .logueo form .botones {
+nav .usuarios #containerLogueo .logueo form .botones {
   margin-top: 3rem;
 }
 
-nav .usuarios .logueo form .botones .boton--logueo,
-nav .usuarios .logueo form .botones .boton--registro,
-nav .usuarios .logueo form .botones .boton--confirmar,
-nav .usuarios .logueo form .botones .boton--cancelar {
+nav .usuarios #containerLogueo .logueo form .botones .boton--logueo,
+nav .usuarios #containerLogueo .logueo form .botones .boton--registro,
+nav .usuarios #containerLogueo .logueo form .botones .boton--confirmar,
+nav .usuarios #containerLogueo .logueo form .botones .boton--cancelar {
   display: inline-block;
   padding: 1rem 2rem;
   border-radius: 4px;
@@ -428,38 +442,38 @@ nav .usuarios .logueo form .botones .boton--cancelar {
   transition: all 200ms linear;
 }
 
-nav .usuarios .logueo form .botones .boton--logueo {
+nav .usuarios #containerLogueo .logueo form .botones .boton--logueo {
   color: #fff;
   background: #0275d8;
 }
 
-nav .usuarios .logueo form .botones .boton--logueo:hover {
+nav .usuarios #containerLogueo .logueo form .botones .boton--logueo:hover {
   background: #0069d9;
 }
 
-nav .usuarios .logueo form .botones .boton--confirmar {
+nav .usuarios #containerLogueo .logueo form .botones .boton--confirmar {
   color: #fff;
   background: #007e00;
   display: none;
 }
 
-nav .usuarios .logueo form .botones .boton--registro,
-nav .usuarios .logueo form .botones .boton--cancelar {
+nav .usuarios #containerLogueo .logueo form .botones .boton--registro,
+nav .usuarios #containerLogueo .logueo form .botones .boton--cancelar {
   margin-left: 2rem;
   color: #000;
 }
 
-nav .usuarios .logueo form .botones .boton--registro:hover,
-nav .usuarios .logueo form .botones .boton--cancelar:hover {
+nav .usuarios #containerLogueo .logueo form .botones .boton--registro:hover,
+nav .usuarios #containerLogueo .logueo form .botones .boton--cancelar:hover {
   -webkit-transform: translateX(2px);
           transform: translateX(2px);
 }
 
-nav .usuarios .logueo form .botones .boton--cancelar {
+nav .usuarios #containerLogueo .logueo form .botones .boton--cancelar {
   display: none;
 }
 
-nav .usuarios .logueo .infoLogueo {
+nav .usuarios #containerLogueo .logueo .infoLogueo {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
