@@ -32,3 +32,4 @@ const botonCerrarCompraExitosa = document.querySelector("#cerrarCompraExitosa");
 const comprarCarrito = document.querySelector(".cta__buy");
 
 const modal = document.querySelector("#modal");
+const modalContacto = document.querySelector(".modalContacto");

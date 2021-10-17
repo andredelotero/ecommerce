@@ -316,6 +316,7 @@ function loguearse(){
                 logueoToggle.style.display="none";
                 nombreLogueo.style.border="1px solid #666"
                 claveLogueo.style.border="1px solid #666"
+                buscarClave=false;
             },2000);  
         }
         else if (!buscarUsuario<0 || !buscarClave){
@@ -473,30 +474,31 @@ $(".cerrarSesion").click(logOut);
 
 //clase 13: animaciones concatenadas
 const animateDom = (id)=>{
+    $("#containerModalContacto").css({'display' :'flex'});
     $(id).html('<p>envianos un e-mail a info@test.com</p><br><br><button id="cerrarModal" class="ctaJquerry">cerrar</button>');
 
     $(id).slideDown(1000);
-    $(id).animate({height:'350px',
-                    width:'400px',
-                    "font-size":"28px"
+    $(id).animate({height:'250px',
+                    width:'350px',
+                    "font-size":"18px"
                     },
-                    2000,
+                    1000,
                     ()=>{
                             $(id).css({'background-color':'white','color':'green'}); 
-                            $("#cerrarModal").fadeIn(1000)
+                            $("#cerrarModal").fadeIn(500)
                         }
                     
                     )
     $("#cerrarModal").click(()=>{
-        $("#modal").slideUp(1000);
-        $("#modal").html('');
-        $("#modal").css({'background-color':'#e9e9e9','color':'#000', 'height':'100px', 'width':'350px', 'font-size':'16px'}); 
+        $(".modalContacto").slideUp(1000);
+        $(".modalContacto").html('');
+        $("#containerModalContacto").css({'display' :'none'});
     }) 
 }
 
 $(() => {
 $('.cta').css({"cursor":"pointer"});
-$('.cta').click(()=>{animateDom("#modal")});
+$('.cta').click(()=>{animateDom(".modalContacto")});
 });
 
 
