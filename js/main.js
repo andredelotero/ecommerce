@@ -23,7 +23,6 @@ else{
 }
 });
 
-
 //vaciar el carrito
 function vaciarCarrito(){
     localStorage.removeItem("productosEnStorage");
