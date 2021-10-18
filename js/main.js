@@ -340,7 +340,7 @@ function logOut(){
 }
 
 
-//expirar sesion despues de un tiempo de inactividad: 60 segundos
+//expirar sesion despues de un tiempo de inactividad: 10 segundos
 
 function expireSession(){
     document.onclick = (()=>timeToExpire=10);

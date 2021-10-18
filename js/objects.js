@@ -9,7 +9,7 @@ class servicios{
     }
 }
 
-//usuario: rol: admin o usuario comun. Compra: el array con los productos 
+//usuario: rol: admin o usuario comun.
 class usuario{
     constructor (id, nombre, clave, rol, compra){
         this.id = id;
